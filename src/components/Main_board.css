@@ -1,0 +1,71 @@
+.top-heading {
+  margin-top: 20px;
+  margin-left: 350px;
+  color: black;
+  font-size: 18px;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.2;
+  font-family: CircularStdBook;
+  font-weight: normal;
+ }
+ .HEADING{
+  margin-top: 15px;
+ }
+ .search-box {
+   margin-left: 350px;
+   color: black;
+ }
+ .form-control {
+  margin-top: 5px;
+  width: 250px;
+ }
+ #issue-btn {
+     display: inline-block;
+     margin: 7px;
+     -webkit-box-align: center;
+     align-items: center;
+     -webkit-box-pack: center;
+     justify-content: center;
+     height: 32px;
+     vertical-align: middle;
+     line-height: 1;
+     padding: 0px 12px;
+     white-space: nowrap;
+     border-radius: 3px;
+     border-width: 0px;
+     transition: all 0.1s ease 0s;
+     appearance: none;
+     cursor: pointer;
+     user-select: none;
+     font-size: 19px;
+     background: rgb(255, 255, 255);
+     color: rgb(85, 88, 94);
+     font-family: CircularStdBook;
+     font-weight: normal;
+     color: rgb(100, 97, 97);
+ }
+ 
+  #update-btn {
+    display: inline-block;
+    margin: 7px;
+     -webkit-box-align: center;
+     align-items: center;
+     -webkit-box-pack: center;
+     justify-content: center;
+     height: 32px;
+     vertical-align: middle;
+     line-height: 1;
+     padding: 0px 12px;
+     white-space: nowrap;
+     border-radius: 3px;
+     border-width: 0px;
+     transition: all 0.1s ease 0s;
+     appearance: none;
+     cursor: pointer;
+     user-select: none;
+     font-size: 19px;
+     background: rgb(255, 255, 255);
+     color: rgb(100, 97, 97);
+     font-family: CircularStdBook;
+     font-weight: normal;
+  }

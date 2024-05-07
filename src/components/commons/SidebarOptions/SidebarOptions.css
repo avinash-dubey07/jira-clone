@@ -1,0 +1,7 @@
+.about {
+  margin-top: 500px;
+  margin-left: 15px;
+  block-size: 2.5rem;
+  display: inline-block;
+  cursor: pointer;
+}

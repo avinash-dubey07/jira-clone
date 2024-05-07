@@ -1,0 +1,80 @@
+.dropDown {
+  width: 50%;
+  height: 29px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: rgb(237, 237, 237);
+  color: black;
+}
+.pro-heading {
+  margin-top: 35px;
+  margin-left: 350px;
+  font-size: 15px;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.2;
+  font-family: CircularStdBook;
+  font-weight: normal;
+  color: rgb(94, 108, 132);
+}
+.ject-heading {
+  color: rgb(23, 43, 77);
+  margin-top: 20px;
+  margin-left: 350px;
+  font-family: CircularStdBook;
+  padding: 6px 0px 15px;
+  font-size: 36px;
+  font-weight: 500;
+}
+#text {
+    display: block;
+    padding-bottom: 5px;
+    color: rgb(94, 108, 132);
+    font-family: CircularStdMedium;
+    margin-top: 0px;
+    margin-left: 350px;
+    font-weight: normal;
+    font-size: 18px;
+}
+.inputOne {
+    height: 100%;
+    width: 100%;
+    margin-left: 350px;
+    padding: 0px 0px;
+    border-radius: 3px;
+    border-color: rgb(237, 237, 237);
+    color: rgb(237, 237, 237);
+    font-family: CircularStdBook;
+    font-weight: normal;
+    font-size: 15px;
+    cursor: text;
+}
+#block {
+  width: 50%;
+  height: 29px;
+  background-color: rgb(237, 237, 237);
+  border-color: rgb(238, 235, 235);
+}
+#blocktwo {
+ width: 50%;
+ height: 150px;
+ margin-left: 0px;
+ margin-top: 0px;
+ background-color: rgb(237, 237, 237);
+ border-color: rgb(238, 235, 235);
+}
+#texttwo {
+  margin-left: 350px;
+  margin-top: 0px;
+  color: rgb(94, 108, 132);
+}
+.pro-btn {
+  background-color: rgb(0, 82, 204);
+  color: rgb(255, 255, 255);
+  margin-top: 45px;
+  height: 36px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 15px;
+  user-select: none;
+  overflow: visible;
+}
