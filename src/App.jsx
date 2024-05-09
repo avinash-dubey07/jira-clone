@@ -1,17 +1,17 @@
 import SidebarOne from "./components/Sidebar_one";
 import SideBar from "./components/SideBar";
 import MainBoard from "./components/Main_boardTop";
-import SearchIssue from "./components/SearchIssue";
+import About from "./components/About";
+
 
 
 function App() {
   return (
     <>
-      <SidebarOne />
-      <SideBar />
-      <MainBoard />
-      {/* < SearchIssue /> */}
-      
+      {/* <SidebarOne /> */}
+      {/* <SideBar />
+      <MainBoard /> */}
+      <About />
     </>
   );
 }

@@ -10,12 +10,14 @@ import ticketService from "../backend/services/ticket.service";
 import ModalComponent from "./commons/Modal/Modal";
 import CreateIssue from "./CreateIssue/Createissue";
 import SearchIssue from "./SearchIssue";
+import About from "./About";
 
 export default function SidebarOne() {
   const [show, setShow] = useState(false);
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [showCreateIssueModal, setShowCreateIssueModal] = useState(false);
   const [showSearchIssueModal, setShowSearchIssueModal] = useState(false);
+  const [showAboutModal, setShowAboutModal] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -48,6 +50,12 @@ export default function SidebarOne() {
 
     if (clickedOption === "SEARCH ISSUES") {
       setShowSearchIssueModal(true);
+      setShowCreateIssueModal(false);
+    }
+
+    if (clickedOption === "About") {
+      setShowAboutModal(true);
+      setShowSearchIssueModal(false);
       setShowCreateIssueModal(false);
     }
   };
@@ -105,11 +113,18 @@ export default function SidebarOne() {
           component={< SearchIssue />}
         />
 
+        <ModalComponent
+          show={showAboutModal}
+          onHide={() => setShowAboutModal(false)}
+          component={<About /> }
+        />
+
         <div className="about">
           <SidebarOptions
             icon={<GrCircleQuestion fontSize={"21px"} />}
             text={"About"}
             isExpanded={sidebarExpanded}
+            onClickHandler={onClickHandler}
             
           />
         </div>
