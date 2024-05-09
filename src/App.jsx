@@ -1,23 +1,15 @@
-// import { Route, Routes } from "react-router-dom";
 import SidebarOne from "./components/Sidebar_one";
-//  import Popup from "./Pages/Popup";
 import SideBar from "./components/SideBar";
-import MainBoard from "./components/Main_board";
-// import Kanban from "./components/Kanban/Kanban";
-// import BanBan from "./components/Banban copy";
-// import CreateIssue from "./components/Modal/Createissue";
-// import Project from "./pages/Project";
+import SearchIssue from "./components/SearchIssue";
+
 
 function App() {
   return (
     <>
-      <SidebarOne />
-      {/* < Popup /> */}
-      <SideBar />
-      {/* <Kanban /> */}
-      {/* <BanBan /> */}
-      <MainBoard />
-      {/* < CreateIssue /> */}
+      {/* <SidebarOne />
+      <SideBar /> */}
+      < SearchIssue />
+      
     </>
   );
 }

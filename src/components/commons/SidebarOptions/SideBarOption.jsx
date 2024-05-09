@@ -9,11 +9,12 @@ export default function SideBarOption(props) {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    whiteSpace: "pre-wrap",
    }}>
-    {icon}
+    {icon} &nbsp;
     {text}
     {onHover ? (
-      <div style={{cursor:'not-allowed'}}>Not Implemented</div>)
+      <div style={{cursor:'not-allowed', fontSize:"12px", fontFamily: "-moz-initial"}}></div>)
       :
       (<></>)}
    </div>

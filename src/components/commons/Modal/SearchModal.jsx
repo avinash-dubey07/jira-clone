@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import Modal from "react-bootstrap/Modal";
 
-function ModalComponent(props) {
+export default function SearchModal() {
   const { show, onHide, component } = props;
   return (
     <Modal
@@ -9,11 +9,8 @@ function ModalComponent(props) {
       onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      
     >
       {component}
     </Modal>
-  );
+  )
 }
-
-export default ModalComponent;

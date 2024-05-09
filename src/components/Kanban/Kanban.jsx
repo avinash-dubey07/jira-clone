@@ -1,48 +1,156 @@
-import React, { useEffect, useState } from "react";
-import "./Kanban.css";
+import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import uuid from "uuid/v4";
+import ticketService from "../backend/services/ticket.service";
 
-export default function Kanban() {
-  const box = [
-    { id: 0, bg: "red" },
-    { id: 1, bg: "green" },
-  ];
+const itemsFromBackend = [
+  { id: uuid(), content: "Firstt task" },
+  { id: uuid(), content: "Second task" },
+  { id: uuid(), content: "Third task" },
+  { id: uuid(), content: "Fourth task" },
+  { id: uuid(), content: "Fifth task" },
+];
 
-  const onDragEndHandler = () => {};
+const columnsFromBackend = {
+  [uuid()]: {
+    name: "Requested",
+    items: itemsFromBackend,
+  },
+  [uuid()]: {
+    name: "To do",
+    items: [],
+  },
+  [uuid()]: {
+    name: "In Progress",
+    items: [],
+  },
+  [uuid()]: {
+    name: "Done",
+    items: [],
+  },
+};
+
+const onDragEnd = (result, columns, setColumns) => {
+  console.log("called");
+  if (!result.destination) return;
+  const { source, destination } = result;
+
+  if (source.droppableId !== destination.droppableId) {
+    const sourceColumn = columns[source.droppableId];
+    const destColumn = columns[destination.droppableId];
+    const sourceItems = [...sourceColumn.items];
+    const destItems = [...destColumn.items];
+    const [removed] = sourceItems.splice(source.index, 1);
+    destItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...sourceColumn,
+        items: sourceItems,
+      },
+      [destination.droppableId]: {
+        ...destColumn,
+        items: destItems,
+      },
+    });
+  } else {
+    const column = columns[source.droppableId];
+    const copiedItems = [...column.items];
+    const [removed] = copiedItems.splice(source.index, 1);
+    copiedItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...column,
+        items: copiedItems,
+      },
+    });
+  }
+};
+
+function Kanban() {
+  const [columns, setColumns] = useState(columnsFromBackend);
+  const backlogTickets = ticketService.getTicketsFromDB("BACKLOG");
+  const development = ticketService.getTicketsFromDB(
+    "SELECTED FOR DEVELOPMENT"
+  );
 
   return (
-    <div>
-      <h1>kanban</h1>
-
-      <DragDropContext onDragEnd={onDragEndHandler}>
-        <Droppable droppableId="first">
-          {(provided) => {
-            return (
-              <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {box.map((e, idx) => {
-                  const id = e.id.toString();
-                  return (
-                    <Draggable key={id} draggableId={id} index={idx}>
-                      {(provided) => {
-                        return (
-                          <li
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps} // Add drag handle props here
-                          >
-                            <div className={`box ${e.bg}`}></div>
-                          </li>
-                        );
-                      }}
-                    </Draggable>
-                  );
-                })}
-                {provided.placeholder}
-              </ul>
-            );
-          }}
-        </Droppable>
+    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+      <DragDropContext
+        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+      >
+        {Object.entries(columns).map(([columnId, column], index) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              key={columnId}
+            >
+              <h2>{column.name}</h2>
+              <div style={{ margin: 8 }}>
+                <Droppable droppableId={columnId} key={columnId}>
+                  {(provided, snapshot) => {
+                    return (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        style={{
+                          background: snapshot.isDraggingOver
+                            ? "lightblue"
+                            : "lightgrey",
+                          padding: 4,
+                          width: 250,
+                          minHeight: 500,
+                        }}
+                      >
+                        {column.items.map((item, index) => {
+                          return (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => {
+                                return (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    style={{
+                                      userSelect: "none",
+                                      padding: 16,
+                                      margin: "0 0 8px 0",
+                                      minHeight: "50px",
+                                      backgroundColor: snapshot.isDragging
+                                        ? "#263B4A"
+                                        : "#456C86",
+                                      color: "white",
+                                      ...provided.draggableProps.style,
+                                    }}
+                                  >
+                                    {item.content}
+                                  </div>
+                                );
+                              }}
+                            </Draggable>
+                          );
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    );
+                  }}
+                </Droppable>
+              </div>
+            </div>
+          );
+        })}
       </DragDropContext>
     </div>
   );
 }
+
+export default Kanban;

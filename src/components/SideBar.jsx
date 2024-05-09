@@ -36,7 +36,7 @@ export default function SideBar() {
         <div className="sb-btn">
           <SideBarOption
             icon={<BsGearWideConnected fontSize={"21px"} />}
-            text={"Project Settings"}
+            text={"Project Setting"}
             onHover={optionOnHover}
           />
         </div>

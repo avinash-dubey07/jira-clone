@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "./Kanban.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import "./Main_board.css";
 export default function MainBoard() {

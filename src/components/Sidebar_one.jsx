@@ -5,13 +5,11 @@ import { FaJira } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { GrCircleQuestion } from "react-icons/gr";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import SidebarOptions from "./commons/SidebarOptions/SidebarOptions";
 import ticketService from "../backend/services/ticket.service";
-import ModalComponent from "../components/commons/Modal/Modal";
+import ModalComponent from "./commons/Modal/Modal";
 import CreateIssue from "./CreateIssue/Createissue";
+import SearchIssue from "./SearchIssue";
 
 export default function SidebarOne() {
   const [show, setShow] = useState(false);
@@ -94,12 +92,19 @@ export default function SidebarOne() {
         ) : (
           <></>
         )} */}
+
         <ModalComponent
           show={showCreateIssueModal}
           onHide={() => setShowCreateIssueModal(false)}
           component={<CreateIssue />}
         />
-        
+
+<ModalComponent
+          show={showSearchIssueModal}
+          onHide={() => setShowSearchIssueModal(false)}
+          component={< SearchIssue />}
+        />
+
         <div className="about">
           <SidebarOptions
             icon={<GrCircleQuestion fontSize={"21px"} />}
