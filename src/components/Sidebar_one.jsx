@@ -47,8 +47,8 @@ export default function SidebarOne() {
     }
 
     if (clickedOption === "SEARCH ISSUES") {
-      setShowCreateIssueModal(false);
       setShowSearchIssueModal(true);
+      setShowCreateIssueModal(false);
     }
   };
 
@@ -98,8 +98,8 @@ export default function SidebarOne() {
           onHide={() => setShowCreateIssueModal(false)}
           component={<CreateIssue />}
         />
-
-<ModalComponent
+    
+        <ModalComponent
           show={showSearchIssueModal}
           onHide={() => setShowSearchIssueModal(false)}
           component={< SearchIssue />}
@@ -110,7 +110,7 @@ export default function SidebarOne() {
             icon={<GrCircleQuestion fontSize={"21px"} />}
             text={"About"}
             isExpanded={sidebarExpanded}
-            onClickHandler={handleShow}
+            
           />
         </div>
       </aside>

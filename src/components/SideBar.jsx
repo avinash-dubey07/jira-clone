@@ -19,8 +19,8 @@ export default function SideBar() {
       onMouseEnter={() => setOptionOnHover(true)}
       onMouseLeave={() => setOptionOnHover(false)}
     >
-      <div className="main-logo">
-        <SiProgress fontSize={"30px"} />
+      <div>
+        <SiProgress fontSize={"40px"} color="red"/>
         <span className="heading-one"> Developrity 1.0</span> <br />
         <span className="heading-two"> Software Project</span>
       </div>{" "}

@@ -8,17 +8,32 @@
   font-family: CircularStdBook;
   font-weight: normal;
  }
- .HEADING{
-  margin-top: 15px;
+ .main-header {
+  display: flex;
+  justify-content: space-between;
  }
+ .HEADING{
+  margin-left: 350px;
+  margin-top: 15px;
+  color: darkblue
+ }
+ .repo-btn {
+  color: rgb(66, 82, 110);
+  border: none;
+  margin-top: 30px;
+  margin-right: 70px;
+  background-color: rgb(242, 242, 242);
+  font-size: 20px;
+  height: 32px;
+  cursor: pointer;
+ }
+
  .search-box {
    margin-left: 350px;
+   width: 30%;
    color: black;
  }
- .form-control {
-  margin-top: 5px;
-  width: 250px;
- }
+
  #issue-btn {
      display: inline-block;
      margin: 7px;
@@ -39,10 +54,10 @@
      user-select: none;
      font-size: 19px;
      background: rgb(255, 255, 255);
-     color: rgb(85, 88, 94);
+     color: rgb(66, 82, 110);
      font-family: CircularStdBook;
      font-weight: normal;
-     color: rgb(100, 97, 97);
+     
  }
  
   #update-btn {
@@ -65,7 +80,7 @@
      user-select: none;
      font-size: 19px;
      background: rgb(255, 255, 255);
-     color: rgb(100, 97, 97);
+     color: rgb(66, 82, 110);
      font-family: CircularStdBook;
      font-weight: normal;
   }

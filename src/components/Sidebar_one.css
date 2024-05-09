@@ -38,9 +38,9 @@
   background: rgb(7, 71, 166);
 }
 .about {
-  margin-top: 500px;
+  margin-top: 700px;
   align-items: center;
-  display: flex;
+  position: fixed;
   flex-direction: row;
   display: inline-block;
   cursor: pointer;

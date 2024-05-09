@@ -1,21 +1,23 @@
 import React from "react";
 import "./App.css";
-import "./Kanban.css";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import "./Main_board.css";
+import "./Main_boardTop.css";
+import { FaGithub } from "react-icons/fa";
+
+
+
 export default function MainBoard() {
-
-  //const [backlogTask, setBacklog] = useState([{ name: "jogen" }]);
  
-
   return (
     <>
     <div className="top-heading">
     <span>Projects  &nbsp;&nbsp;/ &nbsp;&nbsp; </span>
     <span>Developority 1.0 &nbsp;&nbsp;/ &nbsp;&nbsp;</span>
     <span>Kanban board </span> 
-    <h1 className="HEADING">Kanban Board</h1> <br />
-  </div>
+    </div>
+    <div className="main-header">
+    <h1 className="HEADING">Kanban Board</h1>
+    <button className="repo-btn"> <FaGithub /> Github Repo </button>
+     </div>
   <div className="search-box">
     <div className="input-group">
       <input
