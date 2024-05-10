@@ -1,7 +1,8 @@
 import SidebarOne from "./components/Sidebar_one";
 import SideBar from "./components/SideBar";
 import MainBoard from "./components/Main_boardTop";
-import About from "./components/About";
+import Kanban from "./components/Kanban/Kanban";
+
 
 
 
@@ -9,9 +10,9 @@ function App() {
   return (
     <>
       {/* <SidebarOne /> */}
-      {/* <SideBar />
-      <MainBoard /> */}
-      <About />
+      {/* <SideBar /> */}
+      {/* <MainBoard /> */}
+      < Kanban />
     </>
   );
 }

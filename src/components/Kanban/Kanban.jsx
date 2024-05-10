@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import uuid from "uuid/v4";
-import ticketService from "../backend/services/ticket.service";
+//import ticketService from "../backend/services/ticket.service";
 
 const itemsFromBackend = [
   { id: uuid(), content: "Firstt task" },
@@ -70,10 +70,10 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function Kanban() {
   const [columns, setColumns] = useState(columnsFromBackend);
-  const backlogTickets = ticketService.getTicketsFromDB("BACKLOG");
-  const development = ticketService.getTicketsFromDB(
-    "SELECTED FOR DEVELOPMENT"
-  );
+  // const backlogTickets = ticketService.getTicketsFromDB("BACKLOG");
+  // const development = ticketService.getTicketsFromDB(
+  //   "SELECTED FOR DEVELOPMENT"
+  // );
 
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
