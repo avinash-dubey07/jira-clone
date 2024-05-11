@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import uuid from "uuid/v4";
+import "./Kanban.css";
 //import ticketService from "../backend/services/ticket.service";
 
 const itemsFromBackend = [
-  { id: uuid(), content: "Firstt task" },
-  { id: uuid(), content: "Second task" },
-  { id: uuid(), content: "Third task" },
-  { id: uuid(), content: "Fourth task" },
-  { id: uuid(), content: "Fifth task" },
+  { id: uuid(), content: "First Task" },
+  { id: uuid(), content: "Second Task" },
+  { id: uuid(), content: "Third Task" },
+  { id: uuid(), content: "Fourth Task" },
+  { id: uuid(), content: "Fifth Task" },
 ];
 
 const columnsFromBackend = {
   [uuid()]: {
-    name: "Requested",
+    name: "Backlogs",
     items: itemsFromBackend,
   },
   [uuid()]: {
-    name: "To do",
+    name: "To Do",
     items: [],
   },
   [uuid()]: {
@@ -31,7 +32,6 @@ const columnsFromBackend = {
 };
 
 const onDragEnd = (result, columns, setColumns) => {
-  console.log("called");
   if (!result.destination) return;
   const { source, destination } = result;
 
@@ -76,13 +76,15 @@ function Kanban() {
   // );
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
-      <DragDropContext
+    <>
+    <div className="all">
+    <div style={{ display: "flex", justifyContent: "center", height: "100%", marginLeft: "280px", fontFamily: "CircularStdBook", fontSize: "16px" }}>
+      <DragDropContext className="main-board"
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
-            <div
+            <div 
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -90,8 +92,8 @@ function Kanban() {
               }}
               key={columnId}
             >
-              <h2>{column.name}</h2>
-              <div style={{ margin: 8 }}>
+              <h4>{column.name}</h4>
+              <div style={{ margin: 5 }}>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
@@ -100,11 +102,11 @@ function Kanban() {
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "lightblue"
-                            : "lightgrey",
+                            ? "rgb(223, 223, 223)"
+                            : "rgb(235, 235, 235)",
                           padding: 4,
-                          width: 250,
-                          minHeight: 500,
+                          width: 270,
+                          minHeight: 450,
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -126,9 +128,9 @@ function Kanban() {
                                       margin: "0 0 8px 0",
                                       minHeight: "50px",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
-                                      color: "white",
+                                        ? "rgb(240, 240, 240)"
+                                        : "rgb(255, 255, 255)",
+                                      color: "black",
                                       ...provided.draggableProps.style,
                                     }}
                                   >
@@ -150,6 +152,8 @@ function Kanban() {
         })}
       </DragDropContext>
     </div>
+    </div>
+    </>
   );
 }
 

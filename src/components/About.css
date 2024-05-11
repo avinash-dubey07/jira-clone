@@ -1,9 +1,7 @@
 .fb-img {
-  margin-top: 25px;
-  margin-left: 250px;
-  justify-items: center;
-  align-items: center;
-  overflow: clip;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .para {
@@ -11,7 +9,7 @@
   -webkit-tap-highlight-color: transparent;
   font-family: CircularStdBook;
   font-size: 18px;
-  margin-left: 200px;
+  text-align: center;
   font-weight: normal;
   text-wrap: wrap;
 }

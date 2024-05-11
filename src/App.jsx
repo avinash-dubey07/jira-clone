@@ -9,9 +9,9 @@ import Kanban from "./components/Kanban/Kanban";
 function App() {
   return (
     <>
-      {/* <SidebarOne /> */}
-      {/* <SideBar /> */}
-      {/* <MainBoard /> */}
+      <SidebarOne />
+      <SideBar />
+      <MainBoard />
       < Kanban />
     </>
   );

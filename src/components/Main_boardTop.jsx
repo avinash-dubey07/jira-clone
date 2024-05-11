@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import "./Main_boardTop.css";
+import { IoIosSearch } from "react-icons/io";
 import { FaGithub } from "react-icons/fa";
 
 
