@@ -72,10 +72,10 @@
   border-radius: 5px;
   cursor: pointer;
   color: black;
-  background-color: rgb(251, 251, 251);
+  background-color: rgb(242, 242, 242);
 }
 
 .sb-btn:hover {
   color: rgb(16, 16, 246);
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(252, 253, 255);;
 }

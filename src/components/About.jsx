@@ -1,10 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 import "./About.css";
 import feedback from "./images/feed.jpg";
 import { FaGithub } from "react-icons/fa";
 
 
 export default function About() {
+
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `https://github.com/avinash-dubey07/jira-clone`; 
+    navigate(path);
+  }
+
   return (
     <>
     <div>
@@ -20,7 +28,7 @@ export default function About() {
     </div>
     <div className='about-btns'>
     <button type="button" class="btn btn-primary">View Website</button>
-    <button className="repo2-btn"> <FaGithub /> Github Repo </button>
+    <button className="repo2-btn" onClick={routeChange}> <FaGithub /> Github Repo </button>
     </div>
     </>
   )
