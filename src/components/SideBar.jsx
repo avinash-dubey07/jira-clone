@@ -9,9 +9,14 @@ import { MdEventNote } from "react-icons/md";
 import { MdSettingsInputComponent } from "react-icons/md";
 import "./SideBar.css";
 import SideBarOption from "./commons/SidebarOptions/SideBarOption";
+import projectService from "../backend/services/project.service";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
+  const navigate = useNavigate();
   const [optionOnHover, setOptionOnHover] = useState(false);
+  const project = projectService.getProjectDetails();
+  const { name, projectCategory } = project;
 
   return (
     <div
@@ -20,9 +25,9 @@ export default function SideBar() {
       onMouseLeave={() => setOptionOnHover(false)}
     >
       <div>
-        <SiProgress fontSize={"40px"} color="red"/>
-        <span className="heading-one"> Developrity 1.0</span> <br />
-        <span className="heading-two"> Software Project</span>
+        <SiProgress fontSize={"40px"} color="red" />
+        <span className="heading-one"> {name}</span> <br />
+        <span className="heading-two"> {projectCategory} Project</span>
       </div>{" "}
       <br />
       <div className="sidebar-btn">
@@ -38,6 +43,7 @@ export default function SideBar() {
             icon={<BsGearWideConnected fontSize={"21px"} />}
             text={"Project Setting"}
             onHover={optionOnHover}
+            onClick={() => navigate("project-settings")}
           />
         </div>
         <hr />

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import "./Project.css";
+import React, { useEffect, useState } from "react";
+import "./ProjectSettings.css";
  
  
  function Project() {
+  
   const [projectDetail, setProjectDetail] = useState({
    name: '',
    url: '',
@@ -54,7 +55,8 @@ import "./Project.css";
           <option value="">Software</option>
           <option value="">Marketing</option>
         </select> <br />
-        <button className="pro-btn" onClick={() => console.log(projectDetail)}>Save Changes</button>
+        <button className="pro-btn">Save Changes</button>
+        
 
       </div>
     </>

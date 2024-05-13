@@ -1,6 +1,12 @@
+import { sampleProjectDetails } from "./sample";
+
 export const db = {
   tickets: [],
-  projects: [],
+  project: {},
   users: [],
-  comments: []
+  comments: [],
 };
+
+export function initalizeDB() {
+  db.project = sampleProjectDetails;
+}
