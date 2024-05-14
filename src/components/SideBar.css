@@ -57,7 +57,7 @@
   margin-top: 30px;
   margin-left: 10px;
   text-align: 300px;
-  color: black;
+  color: rgb(66, 82, 110);
   user-select: none;
   cursor: not-allowed;
   text-decoration: solid;
@@ -71,11 +71,11 @@
   font-size: larger;
   border-radius: 5px;
   cursor: pointer;
-  color: black;
+  color: rgb(66, 82, 110);
   background-color: rgb(242, 242, 242);
 }
 
 .sb-btn:hover {
-  color: rgb(16, 16, 246);
-  background-color: rgb(252, 253, 255);;
+  color: white;
+  background-color: rgb(199, 199, 199);
 }

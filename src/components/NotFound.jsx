@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import "./NotFound.css";
+import Error from "./images/error.jpg";
+
+
 export default function NotFoundPage() {
   return (
     <>
     <div className="errorpage">
-    <div className="redirect">
-      <h1>404 Page Not Found</h1>
+      <div>
+    <img className="err-img" src={Error} alt="Error Image"/>
+    </div>
+    <div className="text-box">
       <h3>Click To the Home Link Below To Redirect</h3>
-      <Link to="/">Home</Link>
-      </div>
+      <label className="LINK"><Link to="/">Home</Link></label>
+      </div> 
     </div>
     </>
   )

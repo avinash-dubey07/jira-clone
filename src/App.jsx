@@ -4,7 +4,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage/HomePage";
 import ProjectSettings from "./Pages/ProjectSettings/ProjectSettings";
-import NotFoundPage from "./Pages/PageNotFound/NotFound";
+import NotFoundPage from "./components/NotFound";
 
 function App() {
   const [loading, setLoading] = useState(true);
