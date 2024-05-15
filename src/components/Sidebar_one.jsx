@@ -11,8 +11,10 @@ import ModalComponent from "./commons/Modal/Modal";
 import CreateIssue from "./CreateIssue/Createissue";
 import SearchIssue from "./SearchIssue";
 import About from "./About";
+import { useNavigate } from "react-router-dom";
 
 export default function SidebarOne() {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [showCreateIssueModal, setShowCreateIssueModal] = useState(false);
@@ -73,7 +75,7 @@ export default function SidebarOne() {
         onMouseLeave={() => setSidebarExpanded(false)}
       >
         <div className="logo">
-          <FaJira fontSize={"30px"} />
+          <FaJira fontSize={"30px"} onClick={() => navigate("")} />
         </div>{" "}
         <br />
         <SidebarOptions
@@ -100,32 +102,27 @@ export default function SidebarOne() {
         ) : (
           <></>
         )} */}
-
         <ModalComponent
           show={showCreateIssueModal}
           onHide={() => setShowCreateIssueModal(false)}
           component={<CreateIssue />}
         />
-    
         <ModalComponent
           show={showSearchIssueModal}
           onHide={() => setShowSearchIssueModal(false)}
-          component={< SearchIssue />}
+          component={<SearchIssue />}
         />
-
         <ModalComponent
           show={showAboutModal}
           onHide={() => setShowAboutModal(false)}
-          component={<About /> }
+          component={<About />}
         />
-
         <div className="about">
           <SidebarOptions
             icon={<GrCircleQuestion fontSize={"21px"} />}
             text={"About"}
             isExpanded={sidebarExpanded}
             onClickHandler={onClickHandler}
-            
           />
         </div>
       </aside>

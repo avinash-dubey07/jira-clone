@@ -36,6 +36,7 @@ export default function SideBar() {
             icon={<LiaChalkboardSolid fontSize={"21px"} />}
             text={"Kanban Board"}
             onHover={optionOnHover}
+            onClick={() => navigate("")}
           />
         </div>
         <div className="sb-btn">

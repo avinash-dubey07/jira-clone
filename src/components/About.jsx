@@ -7,11 +7,10 @@ import { FaGithub } from "react-icons/fa";
 
 export default function About() {
 
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `https://github.com/avinash-dubey07/jira-clone`; 
-    navigate(path);
-  }
+ const routeChange = () => {
+  const githubUrl = `https://github.com/avinash-dubey07/jira-clone`;
+  window.open(githubUrl, "_blank");
+ };
 
   return (
     <>
@@ -27,7 +26,6 @@ export default function About() {
           </p>
     </div>
     <div className='about-btns'>
-    <button type="button" class="btn btn-primary">View Website</button>
     <button className="repo2-btn" onClick={routeChange}> <FaGithub /> Github Repo </button>
     </div>
     </>

@@ -1,20 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "./App.css";
 import "./Main_board.css";
 import { FaGithub } from "react-icons/fa";
 import projectService from "../backend/services/project.service";
 
-
 export default function MainBoard() {
   const projectDetails = projectService.getProjectDetails();
   const { name } = projectDetails;
 
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `https://github.com/avinash-dubey07/jira-clone`; 
-    navigate(path);
-  }
+  const routeChange = () => {
+    const githubUrl = `https://github.com/avinash-dubey07/jira-clone`;
+    window.open(githubUrl, "_blank");
+  };
+
   return (
     <>
       <div className="top-heading">
@@ -24,7 +22,9 @@ export default function MainBoard() {
       </div>
       <div className="main-header">
         <h1 className="HEADING">Kanban Board</h1>
-        <button className="repo-btn" onClick={routeChange}> <FaGithub /> Github Repo</button>
+        <button className="repo-btn" onClick={routeChange}>
+          <FaGithub /> Github Repo
+        </button>
       </div>
       <div className="search-box">
         <div className="input-group">
@@ -39,8 +39,7 @@ export default function MainBoard() {
           <button id="query-btn">Only My Issues</button>
           <button id="query-btn">Recently Updated</button>
         </div>
-        <div>
-        </div>
+        <div></div>
       </div>
     </>
   );
