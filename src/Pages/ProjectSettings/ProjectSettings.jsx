@@ -51,6 +51,9 @@ import "./ProjectSettings.css";
       </div>
       <div className="inputOne">
         <select name="category" className="dropDown" placeholder="Select" onChange={onChangeHandler} >
+        <option value="" selected disabled hidden>
+              Choose Category
+            </option>
           <option value="">Business</option>
           <option value="">Software</option>
           <option value="">Marketing</option>

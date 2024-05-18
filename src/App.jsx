@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { initalizeDB } from "./backend/db/mockdb";
+import { initalizeDB, syncDbToLocalStorage } from "./backend/db/mockdb";
 import Spinner from "react-bootstrap/Spinner";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
@@ -12,9 +12,17 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Component Did Mount
     // Insert sample values into DB on application start
     initalizeDB();
     setLoading(false);
+
+    window.addEventListener("beforeunload", syncDbToLocalStorage);
+
+    // Acts as componentWillUnmount, before component is destroyed
+    return () => {
+      window.removeEventListener("beforeunload", syncDbToLocalStorage);
+    };
   }, []);
 
   return loading ? (

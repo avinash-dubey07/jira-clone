@@ -1,158 +1,158 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import uuid from "uuid/v4";
 import "./Kanban.css";
-//import ticketService from "../backend/services/ticket.service";
+import ticketService from "../../backend/services/ticket.service";
 
-const itemsFromBackend = [
-  { id: uuid(), content: "First Task" },
-  { id: uuid(), content: "Second Task" },
-  { id: uuid(), content: "Third Task" },
-  { id: uuid(), content: "Fourth Task" },
-  { id: uuid(), content: "Fifth Task" },
-];
-
-const columnsFromBackend = {
-  [uuid()]: {
-    name: "Backlogs",
-    items: itemsFromBackend,
-  },
-  [uuid()]: {
-    name: "To Do",
-    items: [],
-  },
-  [uuid()]: {
-    name: "In Progress",
-    items: [],
-  },
-  [uuid()]: {
-    name: "Done",
-    items: [],
-  },
-};
-
-const onDragEnd = (result, columns, setColumns) => {
+const onDragEnd = (result, boards, setBoards) => {
   if (!result.destination) return;
   const { source, destination } = result;
 
   if (source.droppableId !== destination.droppableId) {
-    const sourceColumn = columns[source.droppableId];
-    const destColumn = columns[destination.droppableId];
-    const sourceItems = [...sourceColumn.items];
-    const destItems = [...destColumn.items];
-    const [removed] = sourceItems.splice(source.index, 1);
-    destItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
+    const sourceBoard = boards[source.droppableId];
+    const destBoard = boards[destination.droppableId];
+
+    const sourceTickets = [...sourceBoard.tickets];
+    const destTickets = [...destBoard.tickets];
+
+    const [removed] = sourceTickets.splice(source.index, 1);
+
+    destTickets.splice(destination.index, 0, removed);
+
+    setBoards({
+      ...boards,
       [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems,
+        ...sourceBoard,
+        tickets: sourceTickets,
       },
       [destination.droppableId]: {
-        ...destColumn,
-        items: destItems,
+        ...destBoard,
+        tickets: destTickets,
       },
     });
   } else {
-    const column = columns[source.droppableId];
-    const copiedItems = [...column.items];
+    const board = boards[source.droppableId];
+    const copiedItems = [...board.tickets];
     const [removed] = copiedItems.splice(source.index, 1);
     copiedItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
+
+    setBoards({
+      ...boards,
       [source.droppableId]: {
-        ...column,
-        items: copiedItems,
+        ...board,
+        tickets: copiedItems,
       },
     });
   }
 };
 
 function Kanban() {
-  const [columns, setColumns] = useState(columnsFromBackend);
-  // const backlogTickets = ticketService.getTicketsFromDB("BACKLOG");
-  // const development = ticketService.getTicketsFromDB(
-  //   "SELECTED FOR DEVELOPMENT"
-  // );
+  const [boards, setBoards] = useState({
+    backlog: {
+      name: "Backlogs",
+      tickets: ticketService.getTicketsFromDB("BACKLOG"),
+    },
+    todo: {
+      name: "To Do",
+      tickets: ticketService.getTicketsFromDB("SELECTED FOR DEVELOPMENT"),
+    },
+    inProgress: {
+      name: "In Progress",
+      tickets: ticketService.getTicketsFromDB("IN PROGRESS"),
+    },
+    done: {
+      name: "Done",
+      tickets: ticketService.getTicketsFromDB("DONE"),
+    },
+  });
 
   return (
     <>
-    <div className="all">
-    <div style={{ display: "flex", justifyContent: "center", height: "100%", marginLeft: "280px", fontFamily: "CircularStdBook", fontSize: "16px" }}>
-      <DragDropContext className="main-board"
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-      >
-        {Object.entries(columns).map(([columnId, column], index) => {
-          return (
-            <div 
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-              key={columnId}
-            >
-              <h4>{column.name}</h4>
-              <div style={{ margin: 5 }}>
-                <Droppable droppableId={columnId} key={columnId}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? "rgb(223, 223, 223)"
-                            : "rgb(235, 235, 235)",
-                          padding: 4,
-                          width: 270,
-                          minHeight: 450,
-                        }}
-                      >
-                        {column.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={{
-                                      userSelect: "none",
-                                      padding: 16,
-                                      margin: "0 0 8px 0",
-                                      minHeight: "50px",
-                                      backgroundColor: snapshot.isDragging
-                                        ? "rgb(240, 240, 240)"
-                                        : "rgb(255, 255, 255)",
-                                      color: "black",
-                                      ...provided.draggableProps.style,
-                                    }}
-                                  >
-                                    {item.content}
-                                  </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
+      <div className="all">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            height: "100%",
+            marginLeft: "280px",
+            fontFamily: "CircularStdBook",
+            fontSize: "16px",
+          }}
+        >
+          <DragDropContext
+            className="main-board"
+            onDragEnd={(result) => onDragEnd(result, boards, setBoards)}
+          >
+            {Object.entries(boards).map(([boardId, board], index) => {
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                   }}
-                </Droppable>
-              </div>
-            </div>
-          );
-        })}
-      </DragDropContext>
-    </div>
-    </div>
+                  key={boardId}
+                >
+                  <h4>{board.name}</h4>
+                  <div style={{ margin: 5 }}>
+                    <Droppable droppableId={boardId} key={boardId}>
+                      {(provided, snapshot) => {
+                        return (
+                          <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            style={{
+                              background: snapshot.isDraggingOver
+                                ? "rgb(223, 223, 223)"
+                                : "rgb(235, 235, 235)",
+                              padding: 4,
+                              width: 270,
+                              minHeight: 450,
+                            }}
+                          >
+                            {board.tickets.map((ticket, index) => {
+                              return (
+                                <Draggable
+                                  key={ticket.id.toString()}
+                                  draggableId={ticket.id.toString()}
+                                  index={index}
+                                >
+                                  {(provided, snapshot) => {
+                                    return (
+                                      <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        style={{
+                                          userSelect: "none",
+                                          padding: 16,
+                                          margin: "0 0 8px 0",
+                                          minHeight: "50px",
+                                          backgroundColor: snapshot.isDragging
+                                            ? "rgb(240, 240, 240)"
+                                            : "rgb(255, 255, 255)",
+                                          color: "black",
+                                          ...provided.draggableProps.style,
+                                        }}
+                                      >
+                                        {ticket.shortSummary}
+                                      </div>
+                                    );
+                                  }}
+                                </Draggable>
+                              );
+                            })}
+                            {provided.placeholder}
+                          </div>
+                        );
+                      }}
+                    </Droppable>
+                  </div>
+                </div>
+              );
+            })}
+          </DragDropContext>
+        </div>
+      </div>
     </>
   );
 }

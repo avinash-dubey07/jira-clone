@@ -1,28 +1,67 @@
 import React, { useState } from "react";
 import "./Createissue.css";
-
+import ticketService from "../../backend/services/ticket.service";
 
 function CreateIssue() {
-   const [createIssue, setCreateIssue] = useState({
-    issueType: '',
-    summary: 'Write here...',
-    description: 'Explain here...',
-    reporter: '',
-    assigners: '',
-    priority: '',
-   })
+  const [createIssue, setCreateIssue] = useState({
+    issueType: "",
+    shortSummary: "", // shortSummary
+    description: "",
+    reporter: "",
+    assignees: [],
+    priority: "",
+    status: "BACKLOG",
+  });
 
-   const onChangeHandler = (event) => {
+  const onChangeHandler = (event) => {
+    console.log(event.target.name, event.target.value);
     setCreateIssue(() => ({
       ...createIssue,
-      [event.target.name]: event.target.value
-    }))
-   }
+      [event.target.name]:
+        event.target.name === "assignees"
+          ? [event.target.value]
+          : event.target.value,
+    }));
+  };
 
-   const onSubmitHandler = (event) => {
-    event.preventDefault()
-    console.log(createIssue);
-   }
+  const validateTicket = () => {
+    const {
+      issueType,
+      shortSummary,
+      description,
+      reporter,
+      assignees,
+      priority,
+    } = createIssue;
+
+    if (
+      !issueType.length ||
+      !shortSummary.length ||
+      !description.length ||
+      !reporter.length ||
+      !assignees.length ||
+      !priority.length
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    const isValid = validateTicket();
+
+    if (!isValid) {
+      // H.W -> Show popup on screen with this error
+      // Snackbar
+      console.log("Please enter all details");
+      return;
+    }
+
+    // Create ticket in DB
+    ticketService.createTicketInDB(createIssue);
+  };
 
   return (
     <>
@@ -34,21 +73,32 @@ function CreateIssue() {
           <label className="form-text">Issue Type</label>
         </div>
         <div>
-          <select name="types" className="dropdown" onChange={onChangeHandler}>
-            <option value=""> Task</option>
-            <option value=""> Bug</option>
-            <option value=""> Story</option>
+          <select
+            name="issueType"
+            className="dropdown"
+            onChange={onChangeHandler}
+            required
+          >
+            <option value="" selected disabled hidden>
+              Choose Issue
+            </option>
+            <option value="Task"> Task</option>
+            <option value="Bug"> Bug</option>
+            <option value="Story"> Story</option>
           </select>
           <p className="textTwo">
             Start typing to get a list of possible matches.
           </p>
-          <hr  className="small"/>
+          <hr className="small" />
         </div>
         <div>
           <label className="form-text">Short Summary</label>
           <input
             type="text"
+            name="shortSummary"
+            placeholder="Enter your short summary here..."
             className="dropdown"
+            onChange={onChangeHandler}
           />
           <p className="textTwo">
             Concisely summarize the issue in one or two sentences.
@@ -63,6 +113,7 @@ function CreateIssue() {
             type="text"
             name="description"
             onChange={onChangeHandler}
+            required
           />
         </div>
         <p className="textTwo">
@@ -77,10 +128,14 @@ function CreateIssue() {
             name="reporter"
             className="dropdown"
             onChange={onChangeHandler}
+            required
           >
-            <option value="">Deepinder Goyal</option>
-            <option value="">Ashneer Grover</option>
-            <option value="">Aman Gupta</option>
+            <option value="" selected disabled hidden>
+              Choose Reporter
+            </option>
+            <option value="1">Deepinder Goyal</option>
+            <option value="2">Ashneer Grover</option>
+            <option value="3">Aman Gupta</option>
           </select>
         </div>
         <br />
@@ -89,13 +144,17 @@ function CreateIssue() {
         </div>
         <div>
           <select
-            name="assigner"
+            name="assignees"
             className="dropdown"
             onChange={onChangeHandler}
+            required
           >
-            <option value="">Deepinder Goyal</option>
-            <option value="">Ashneer Grover</option>
-            <option value="">Aman Gupta</option>
+            <option value="" selected disabled hidden>
+              Choose Assignees
+            </option>
+            <option value="1">Deepinder Goyal</option>
+            <option value="2">Ashneer Grover</option>
+            <option value="3">Aman Gupta</option>
           </select>
         </div>
         <br />
@@ -107,21 +166,22 @@ function CreateIssue() {
             name="priority"
             className="dropdown"
             onChange={onChangeHandler}
+            required
           >
-            <option value="">Highest</option>
-            <option value="">High</option>
-            <option value="">Medium</option>
-            <option value="">Low</option>
-            <option value="">Lowest</option>
+            <option value="" selected disabled hidden>
+              Choose Priority
+            </option>
+            <option value="Urgent">Urgent</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
           </select>
           <p className="textTwo">Priority in relation to other issues</p>
         </div>
-        <button className="create-btn">
+        <button className="create-btn" onClick={onSubmitHandler}>
           Create Issue
         </button>
-        <button className="cancel-btn">
-          Cancel
-        </button>
+        <button className="cancel-btn">Cancel</button>
       </form>
     </>
   );
