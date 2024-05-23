@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Createissue.css";
 import ticketService from "../../backend/services/ticket.service";
-import ToastContainer from "react-bootstrap/ToastContainer";
-import Toast from "react-bootstrap/Toast";
+import { useTicketContext } from "../../App";
 
 function CreateIssue(props) {
+  const { setAllTickets } = useTicketContext();
   // props ->  {setShowModal: {setShowCreateIssueModal}, prop2: "123", prop3: "qwerty"  }
   // props.prop2 [Output: 123]
   // { setShowModal, prop2, props3 }
@@ -57,23 +57,20 @@ function CreateIssue(props) {
     event.preventDefault();
     const isValid = validateTicket();
 
-    // if (!isValid) {
-    //   return (
-    //     <ToastContainer
-    //       position="top-end"
-    //       className="p-3"
-    //       style={{ zIndex: 1 }}
-    //     >
-    //       <Toast>
-    //         <Toast.Body>Enter the required details.</Toast.Body>
-    //       </Toast>
-    //     </ToastContainer>
-    //   );
-    // }
+    if (!isValid) {
+      // TO DO : SHOW TOAST
+    }
 
     ticketService.createTicketInDB(createIssue);
     props.setShowModal(false);
     props.setShowToast(true);
+
+    const tickets = ticketService.getAllTickets();
+    setAllTickets(tickets);
+  };
+
+  const closeIssueModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -90,7 +87,6 @@ function CreateIssue(props) {
             name="issueType"
             className="dropdown"
             onChange={onChangeHandler}
-            required
           >
             <option value="" selected disabled hidden>
               Choose Issue
@@ -112,7 +108,6 @@ function CreateIssue(props) {
             placeholder="Enter your short summary here..."
             className="dropdown"
             onChange={onChangeHandler}
-            required
           />
           <p className="textTwo">
             Concisely summarize the issue in one or two sentences.
@@ -127,7 +122,6 @@ function CreateIssue(props) {
             type="text"
             name="description"
             onChange={onChangeHandler}
-            required
           />
         </div>
         <p className="textTwo">
@@ -142,7 +136,6 @@ function CreateIssue(props) {
             name="reporter"
             className="dropdown"
             onChange={onChangeHandler}
-            required
           >
             <option value="" selected disabled hidden>
               Choose Reporter
@@ -161,7 +154,6 @@ function CreateIssue(props) {
             name="assignees"
             className="dropdown"
             onChange={onChangeHandler}
-            required
           >
             <option value="" selected disabled hidden>
               Choose Assignees
@@ -180,7 +172,6 @@ function CreateIssue(props) {
             name="priority"
             className="dropdown"
             onChange={onChangeHandler}
-            required
           >
             <option value="" selected disabled hidden>
               Choose Priority
@@ -195,7 +186,9 @@ function CreateIssue(props) {
         <button className="create-btn" onClick={onSubmitHandler}>
           Create Issue
         </button>
-        <button className="cancel-btn">Cancel</button>
+        <button className="cancel-btn" onClick={closeIssueModal}>
+          Cancel
+        </button>
       </form>
     </>
   );

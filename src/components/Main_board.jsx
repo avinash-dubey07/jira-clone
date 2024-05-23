@@ -16,6 +16,9 @@ export default function MainBoard() {
     window.open(githubUrl, "_blank");
   };
 
+  const handleSubmit = (e) => e.preventDefault();
+    
+
   return (
     <>
       <div className="top-heading">
@@ -30,13 +33,11 @@ export default function MainBoard() {
         </button>
       </div>
       <div className="search-box">
-        <div className="input-group">
+        <div className="input-group" onSubmit={handleSubmit}>
           <input
             type="search"
             className="form-control"
             placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
           />
           &nbsp;&nbsp;
           <div style={{marginTop:'5px', marginLeft:'10px'}}>

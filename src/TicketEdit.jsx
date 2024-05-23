@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import "./TicketEdit.css";
 import About from './components/About';
@@ -10,20 +10,29 @@ import { AiOutlineDelete } from "react-icons/ai";
 import Stark from "./components/Icons/stark.ico";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import ticketService from './backend/services/ticket.service';
+import { useTicketContext } from './App';
 
 export default function TicketEdit({ticket, ticketModal}) {
   const [showAboutModal, setShowAboutModal] = useState(false);
   
+ const { setAllTickets } = useTicketContext();
 
   const onClickHandler = (clickedOption) => {
     if (clickedOption === "<BsFillSendFill /> Give feedback") {
       setShowAboutModal(true);
     }
   };
+
+  const closeTicketModal = () => {
+    ticketModal(false);
+  };
   
   const deleteTicket = () => {
     ticketService.deleteTicketInDB(ticket.id);
     ticketModal(false);
+
+    const upgradedTickets = ticketService.getAllTickets();
+    setAllTickets(upgradedTickets);
     
   }
 
@@ -37,7 +46,7 @@ export default function TicketEdit({ticket, ticketModal}) {
          <button onClick={onClickHandler}> <BsFillSendFill /> Give feedback</button>
  <button> <IoIosLink /> Copy link</button>
  <button onClick={deleteTicket}><AiOutlineDelete /></button>
- <button>&times;</button>
+ <button onClick={closeTicketModal}>&times;</button>
  </div>
  <ModalComponent
           show={showAboutModal}

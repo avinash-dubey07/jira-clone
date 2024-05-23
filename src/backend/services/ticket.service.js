@@ -42,8 +42,15 @@ function createTicketInDB(ticket) {
   console.log({ dbTickets });
 }
 
+// Get all the tickets from DB
+function getAllTickets() {
+  //Create deep copy of DB Tickets
+  const dbTickets = JSON.parse(JSON.stringify(db.tickets));
+  return dbTickets;
+}
+
 // Read operation
-function getTicketsFromDB(status) {
+function getTicketsByStatus(status) {
   // Step 1. Get all tickets present in DB
 
   const dbTickets = db.tickets; // Array of tickets in DB [eg: 10 tickets] contains all the tickets
@@ -98,7 +105,8 @@ function deleteTicketInDB(ticketId) {
 
 export default {
   createTicketInDB,
-  getTicketsFromDB,
+  getAllTickets,
+  getTicketsByStatus,
   updateTicketInDB,
   deleteTicketInDB,
 };

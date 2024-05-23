@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import "./Kanban.css";
 import ModalComponent from "../commons/Modal/Modal";
 import TicketEdit from "../../TicketEdit";
 import ticketService from "../../backend/services/ticket.service";
+import { useTicketContext } from "../../App";
 
 const onDragEnd = (result, boards, setBoards) => {
   if (!result.destination) return;
@@ -51,28 +52,46 @@ function Kanban() {
   const [showTicketModal, setShowTicketModal] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState();
   const [ticketModified, setTicketModified] = useState(false);
+
+  const { allTickets } = useTicketContext();
+  // Function to filter tickets based on their status
+  const getFilteredTickets = (status) => {
+    const filteredTickets = allTickets.filter(
+      (ticket) => ticket.status === status
+    );
+    return filteredTickets;
+  };
+
+  const getBoards = () => {
+    return {
+      backlog: {
+        name: "Backlogs",
+        tickets: getFilteredTickets("BACKLOG"),
+      },
+      todo: {
+        name: "To Do",
+        tickets: getFilteredTickets("SELECTED FOR DEVELOPMENT"),
+      },
+      inProgress: {
+        name: "In Progress",
+        tickets: getFilteredTickets("IN PROGRESS"),
+      },
+      done: {
+        name: "Done",
+        tickets: getFilteredTickets("DONE"),
+      },
+    };
+  };
   // boards -> {key: value}
   // value -> Object {key: valye}
   // name, tickets-> Array of objects
   //ARRAY ELEMENT -> ARR[INDEX] -> ELEMENT
-  const [boards, setBoards] = useState({
-    backlog: {
-      name: "Backlogs",
-      tickets: ticketService.getTicketsFromDB("BACKLOG"),
-    },
-    todo: {
-      name: "To Do",
-      tickets: ticketService.getTicketsFromDB("SELECTED FOR DEVELOPMENT"),
-    },
-    inProgress: {
-      name: "In Progress",
-      tickets: ticketService.getTicketsFromDB("IN PROGRESS"),
-    },
-    done: {
-      name: "Done",
-      tickets: ticketService.getTicketsFromDB("DONE"),
-    },
-  });
+  const [boards, setBoards] = useState(getBoards());
+
+  useEffect(() => {
+    const updatedBoards = getBoards();
+    setBoards({ ...updatedBoards });
+  }, [allTickets]);
 
   const onTicketClickHandler = (boardKey, ticketIndex) => {
     // Example -> Fix the bug
@@ -82,7 +101,7 @@ function Kanban() {
     const clickedTicket = boardTickets[ticketIndex]; // ticketIndex = 1 || Output = {ticket 1 obj}
     setShowTicketModal(true);
     setSelectedTicket(clickedTicket);
-  }; 
+  };
 
   return (
     <>
@@ -111,7 +130,7 @@ function Kanban() {
                   }}
                   key={boardId}
                 >
-                  <h5 style={{ justifyContent:'center'}}>{board.name}</h5>
+                  <h5 style={{ justifyContent: "center" }}>{board.name}</h5>
                   <div style={{ margin: 7 }}>
                     <Droppable droppableId={boardId} key={boardId}>
                       {(provided, snapshot) => {
@@ -131,7 +150,7 @@ function Kanban() {
                             {board.tickets.map((ticket, index) => {
                               return (
                                 <Draggable
-                                  key={ticket.id.toString()}
+                                  key={boardId + ticket.id.toString()}
                                   draggableId={ticket.id.toString()}
                                   index={index}
                                 >
@@ -180,11 +199,16 @@ function Kanban() {
         <ModalComponent
           show={showTicketModal}
           onHide={() => setShowTicketModal(false)}
-          component={<TicketEdit ticket={selectedTicket} ticketModal={setShowTicketModal}/>}
+          component={
+            <TicketEdit
+              ticket={selectedTicket}
+              ticketModal={setShowTicketModal}
+            />
+          }
           //1. open the ticketEdit modal
           //2. click on  the delete button
           //3. delete the ticket from the kanban board
-          //4.  close the TicketEdit modal 
+          //4.  close the TicketEdit modal
           //5.  rerender the UI kanban board.
         />
       )}
