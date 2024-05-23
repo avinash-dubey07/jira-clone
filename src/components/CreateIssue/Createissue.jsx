@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Createissue.css";
 import ticketService from "../../backend/services/ticket.service";
+import ToastContainer from "react-bootstrap/ToastContainer";
+import Toast from "react-bootstrap/Toast";
 
-function CreateIssue() {
+function CreateIssue(props) {
+  // props ->  {setShowModal: {setShowCreateIssueModal}, prop2: "123", prop3: "qwerty"  }
+  // props.prop2 [Output: 123]
+  // { setShowModal, prop2, props3 }
+  // prop2 []
   const [createIssue, setCreateIssue] = useState({
     issueType: "",
-    shortSummary: "", // shortSummary
+    shortSummary: "",
     description: "",
     reporter: "",
     assignees: [],
@@ -14,7 +20,6 @@ function CreateIssue() {
   });
 
   const onChangeHandler = (event) => {
-    console.log(event.target.name, event.target.value);
     setCreateIssue(() => ({
       ...createIssue,
       [event.target.name]:
@@ -52,15 +57,23 @@ function CreateIssue() {
     event.preventDefault();
     const isValid = validateTicket();
 
-    if (!isValid) {
-      // H.W -> Show popup on screen with this error
-      // Snackbar
-      console.log("Please enter all details");
-      return;
-    }
+    // if (!isValid) {
+    //   return (
+    //     <ToastContainer
+    //       position="top-end"
+    //       className="p-3"
+    //       style={{ zIndex: 1 }}
+    //     >
+    //       <Toast>
+    //         <Toast.Body>Enter the required details.</Toast.Body>
+    //       </Toast>
+    //     </ToastContainer>
+    //   );
+    // }
 
-    // Create ticket in DB
     ticketService.createTicketInDB(createIssue);
+    props.setShowModal(false);
+    props.setShowToast(true);
   };
 
   return (
@@ -99,6 +112,7 @@ function CreateIssue() {
             placeholder="Enter your short summary here..."
             className="dropdown"
             onChange={onChangeHandler}
+            required
           />
           <p className="textTwo">
             Concisely summarize the issue in one or two sentences.

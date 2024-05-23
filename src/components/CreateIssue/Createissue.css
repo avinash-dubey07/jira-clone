@@ -87,16 +87,7 @@
   background-color: white;
   opacity: 20px;
 }
-/* .inputOne {
-  height: 100%;
-  width: 100%;
-  margin-left: 350px;
-  padding: 0px 0px;
-  border-radius: 3px;
-  border-color: rgb(237, 237, 237);
-  color: rgb(237, 237, 237);
-  font-family: CircularStdBook;
-  font-weight: normal;
-  font-size: 15px;
-  cursor: text;
-} */
+
+select.dropdown:active {
+  background: rgb(210, 229, 254);
+}

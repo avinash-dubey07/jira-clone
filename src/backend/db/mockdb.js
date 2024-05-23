@@ -1,4 +1,4 @@
-import { sampleProjectDetails } from "./sample";
+import { sampleProjectDetails } from "./sampleProject";
 
 export let db = {
   tickets: [],

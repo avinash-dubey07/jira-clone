@@ -1,37 +1,29 @@
-import React from 'react';
-import ReactSearchBox from "react-search-box";
-import { FcSearch } from "react-icons/fc";
-import { db } from '../backend/db/mockdb';
+import React, { useEffect, useState } from "react";
 import "./SearchIssue.css";
+import SearchBar from "./SearchBar/SearchBar";
+import { sampleTicketDetails } from "../backend/db/sampleTickets";
+import ListPage from "./SearchBar/ListPage";
 
-
-export default function SearchIssue() {
-
-
+export default function SearchIssue({ tickets }) {
+  const [searchResults, setSearchResults] = useState(sampleTicketDetails);
 
   return (
     <>
-    <div className='search-bar'>
-    <div>
-      <span>
-          <label className='search-icon'><FcSearch /></label>
-        <input  type="searchbar" placeholder='Search issues by tickets description.....' id="ekbek" />
-        {/* <button className='cross-btn'>&times;</button> */}
-        </span>
-        </div>
-      </div>
-    
+      {/* Searchbar needs all tickets, and based on user input, it filters the matching tickets from all tickets */}
+      {/* setSearchResults is passed to update the search result tickets in the parent state */}
+      <SearchBar
+        allTickets={sampleTicketDetails}
+        setSearchResults={setSearchResults}
+      />
+      {/* <div>
+        <h5 className="search-tag">RECENT ISSUES</h5>
+        <ListPage searchResults={searchResults} />
+      </div> */}
       <div>
-        <h5 className='search-tag'>RECENT ISSUES</h5>
-{/*        
-        <ReactSearchBox
-        placeholder="Search issues by tickets description....."
-        value=""
-        leftIcon={<FcSearch />}
-        callback={(record) => console.log(record)}
-      /> */}
+        {searchResults.map((ticket) => {
+          return <li>{ticket.shortSummary}</li>;
+        })}
       </div>
-      </>
-      
-  )
+    </>
+  );
 }

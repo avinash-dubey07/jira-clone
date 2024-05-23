@@ -11,10 +11,12 @@ import ModalComponent from "./commons/Modal/Modal";
 import CreateIssue from "./CreateIssue/Createissue";
 import SearchIssue from "./SearchIssue";
 import About from "./About";
+import CreateToast from "./commons/Toasts/CreateToast";
 import { useNavigate } from "react-router-dom";
 
 export default function SidebarOne() {
   const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false);
   const [show, setShow] = useState(false);
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [showCreateIssueModal, setShowCreateIssueModal] = useState(false);
@@ -62,9 +64,11 @@ export default function SidebarOne() {
     }
   };
 
-  const onCreateIssueHandler = () => {
-    const ticket = {};
-    ticketService.createTicketInDB(ticket);
+ 
+  const onSearchIssueHandler = (tickets, shortSummary) => {
+    const ticketsInDb = ticketService.getTicketsFromDB(tickets);
+    const ticketSummary = ticketsInDb.shortSummary;
+    setShowAllTickets(ticketSummary);
   };
 
   return (
@@ -83,7 +87,8 @@ export default function SidebarOne() {
           text={"SEARCH ISSUES"}
           isExpanded={sidebarExpanded}
           onClickHandler={onClickHandler}
-        />{" "}
+        />
+        {""}
         <br></br>
         <SidebarOptions
           icon={<FaPlus fontSize={"21px"} />}
@@ -91,21 +96,18 @@ export default function SidebarOne() {
           isExpanded={sidebarExpanded}
           onClickHandler={onClickHandler}
         />
-        {/* Popup-> by default not visible unless clicked */}
-        {/* {showSearchModal === true ? (
-          <div>Search Issues Modal Simulation!!</div>
-        ) : (
-          <></>
-        )}
-        {showCreateIssueModal === true ? (
-          <div>Create Issue Modal Simulation!!</div>
-        ) : (
-          <></>
-        )} */}
+        <div className="about">
+          <SidebarOptions
+            icon={<GrCircleQuestion fontSize={"21px"} />}
+            text={"About"}
+            isExpanded={sidebarExpanded}
+            onClickHandler={onClickHandler}
+          />
+        </div>
         <ModalComponent
           show={showCreateIssueModal}
           onHide={() => setShowCreateIssueModal(false)}
-          component={<CreateIssue />}
+          component={<CreateIssue setShowModal={setShowCreateIssueModal} setShowToast={setShowToast} />}
         />
         <ModalComponent
           show={showSearchIssueModal}
@@ -117,15 +119,8 @@ export default function SidebarOne() {
           onHide={() => setShowAboutModal(false)}
           component={<About />}
         />
-        <div className="about">
-          <SidebarOptions
-            icon={<GrCircleQuestion fontSize={"21px"} />}
-            text={"About"}
-            isExpanded={sidebarExpanded}
-            onClickHandler={onClickHandler}
-          />
-        </div>
       </aside>
+      {showToast && <CreateToast showToast={showToast} />}
     </>
   );
 }

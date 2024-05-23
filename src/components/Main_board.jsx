@@ -1,6 +1,9 @@
 import React from "react";
 import "./App.css";
 import "./Main_board.css";
+import Aman from "./Icons/aman.ico"
+import Ashneer from "./Icons/ashneer.ico";
+import Deepinder from "./Icons/deepinder.ico";
 import { FaGithub } from "react-icons/fa";
 import projectService from "../backend/services/project.service";
 
@@ -23,7 +26,7 @@ export default function MainBoard() {
       <div className="main-header">
         <h1 className="HEADING">Kanban Board</h1>
         <button className="repo-btn" onClick={routeChange}>
-          <FaGithub /> Github Repo
+          <FaGithub style={{marginTop:"-3px"}} /> Github Repo
         </button>
       </div>
       <div className="search-box">
@@ -36,6 +39,12 @@ export default function MainBoard() {
             aria-describedby="search-addon"
           />
           &nbsp;&nbsp;
+          <div style={{marginTop:'5px', marginLeft:'10px'}}>
+            <img style={{ height:'39px', width:'39px', borderRadius:'20px'}} name="deepinder" src={Deepinder} alt="img-icon" />
+            <img style={{ height:'39px', width:'39px', borderRadius:'20px'}} name="ashneer" src={Ashneer} alt="img-icon" />
+            <img style={{ height:'39px', width:'39px', borderRadius:'20px'}} name="aman" src={Aman} alt="img-icon" />
+            
+          </div>
           <button id="query-btn">Only My Issues</button>
           <button id="query-btn">Recently Updated</button>
         </div>

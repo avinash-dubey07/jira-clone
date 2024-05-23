@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import "./Kanban.css";
+import ModalComponent from "../commons/Modal/Modal";
+import TicketEdit from "../../TicketEdit";
 import ticketService from "../../backend/services/ticket.service";
 
 const onDragEnd = (result, boards, setBoards) => {
@@ -46,6 +48,13 @@ const onDragEnd = (result, boards, setBoards) => {
 };
 
 function Kanban() {
+  const [showTicketModal, setShowTicketModal] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState();
+  const [ticketModified, setTicketModified] = useState(false);
+  // boards -> {key: value}
+  // value -> Object {key: valye}
+  // name, tickets-> Array of objects
+  //ARRAY ELEMENT -> ARR[INDEX] -> ELEMENT
   const [boards, setBoards] = useState({
     backlog: {
       name: "Backlogs",
@@ -64,6 +73,16 @@ function Kanban() {
       tickets: ticketService.getTicketsFromDB("DONE"),
     },
   });
+
+  const onTicketClickHandler = (boardKey, ticketIndex) => {
+    // Example -> Fix the bug
+    // 1. identify the board using boardKey
+    const applicableBoard = boards[boardKey]; // boardKey -> backlog ->**|| Final output = { name: "Backlogs",tickets: [{}]} ||**
+    const boardTickets = applicableBoard.tickets; // [{ticket 0 obj}, {ticket 1 obj}, {ticket 2 oj}]
+    const clickedTicket = boardTickets[ticketIndex]; // ticketIndex = 1 || Output = {ticket 1 obj}
+    setShowTicketModal(true);
+    setSelectedTicket(clickedTicket);
+  }; 
 
   return (
     <>
@@ -92,8 +111,8 @@ function Kanban() {
                   }}
                   key={boardId}
                 >
-                  <h4>{board.name}</h4>
-                  <div style={{ margin: 5 }}>
+                  <h5 style={{ justifyContent:'center'}}>{board.name}</h5>
+                  <div style={{ margin: 7 }}>
                     <Droppable droppableId={boardId} key={boardId}>
                       {(provided, snapshot) => {
                         return (
@@ -131,8 +150,12 @@ function Kanban() {
                                             ? "rgb(240, 240, 240)"
                                             : "rgb(255, 255, 255)",
                                           color: "black",
+
                                           ...provided.draggableProps.style,
                                         }}
+                                        onClick={() =>
+                                          onTicketClickHandler(boardId, index)
+                                        }
                                       >
                                         {ticket.shortSummary}
                                       </div>
@@ -153,6 +176,18 @@ function Kanban() {
           </DragDropContext>
         </div>
       </div>
+      {showTicketModal && (
+        <ModalComponent
+          show={showTicketModal}
+          onHide={() => setShowTicketModal(false)}
+          component={<TicketEdit ticket={selectedTicket} ticketModal={setShowTicketModal}/>}
+          //1. open the ticketEdit modal
+          //2. click on  the delete button
+          //3. delete the ticket from the kanban board
+          //4.  close the TicketEdit modal 
+          //5.  rerender the UI kanban board.
+        />
+      )}
     </>
   );
 }

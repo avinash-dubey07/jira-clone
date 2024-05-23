@@ -26,14 +26,16 @@
 }
 
 .repo2-btn {
+  padding: 7px;
+  align-items: center;
   border-radius: 7px;
   margin-left: 70px;
   margin-top: 3px;
   color: rgb(66, 82, 110);
   border: none;
   background-color: rgb(242, 242, 242);
-  font-size: 20px;
-  height: 40px;
+  font-size: 14px;
+  height: 36px;
   cursor: pointer;
  }
 

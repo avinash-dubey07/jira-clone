@@ -45,7 +45,7 @@ function createTicketInDB(ticket) {
 // Read operation
 function getTicketsFromDB(status) {
   // Step 1. Get all tickets present in DB
-  
+
   const dbTickets = db.tickets; // Array of tickets in DB [eg: 10 tickets] contains all the tickets
 
   // Step 2. Declare an array of search ticket. This will only contain tickets which match the given filter
@@ -72,7 +72,6 @@ function getTicketsFromDB(status) {
 
 // Update operation
 function updateTicketInDB(ticketId, updatedTicket) {
-
   // get all tickets in db
   const ticketsInDB = db.tickets;
 
@@ -93,7 +92,7 @@ function deleteTicketInDB(ticketId) {
   const index = ticketsInDB.findIndex((ticket) => ticket.id === ticketId);
   // Step 3. Delete the ticket found at the index
   if (index >= 0) {
-    ticketsInDB.splice(index);
+    ticketsInDB.splice(index, 1);
   }
 }
 

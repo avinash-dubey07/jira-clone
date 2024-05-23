@@ -17,14 +17,18 @@
   margin-top: 15px;
   color: darkblue
  }
+
  .repo-btn {
   color: rgb(66, 82, 110);
+  padding: 7px;
   border: none;
+  border-radius: 7px;
+  align-items: center;
   margin-top: 30px;
   margin-right: 30px;
   background-color: rgb(242, 242, 242);
-  font-size: 20px;
-  height: 32px;
+  font-size: 14px;
+  height: 36px;
   cursor: pointer;
  }
 
