@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import "./Main_board.css";
 import Aman from "./Icons/aman.ico"
 import Ashneer from "./Icons/ashneer.ico";
@@ -27,23 +26,23 @@ export default function MainBoard() {
         <span>Kanban board </span>
       </div>
       <div className="main-header">
-        <h1 className="HEADING">Kanban Board</h1>
+        <h4 className="HEADING">Kanban Board</h4>
         <button className="repo-btn" onClick={routeChange}>
-          <FaGithub style={{marginTop:"-3px"}} /> Github Repo
+          <FaGithub style={{}} /> Github Repo
         </button>
       </div>
-      <div className="search-box">
+      <div>
         <div className="input-group" onSubmit={handleSubmit}>
           <input
             type="search"
-            className="form-control"
+            className="search-box"
             placeholder="Search"
           />
           &nbsp;&nbsp;
-          <div style={{marginTop:'5px', marginLeft:'10px'}}>
-            <img style={{ height:'39px', width:'39px', borderRadius:'20px'}} name="deepinder" src={Deepinder} alt="img-icon" />
-            <img style={{ height:'39px', width:'39px', borderRadius:'20px'}} name="ashneer" src={Ashneer} alt="img-icon" />
-            <img style={{ height:'39px', width:'39px', borderRadius:'20px'}} name="aman" src={Aman} alt="img-icon" />
+          <div style={{marginTop:'9px', marginLeft:'10px', cursor:'no-drop'}}>
+            <img style={{ height:'32px', width:'32px', borderRadius:'20px'}} name="deepinder" src={Deepinder} alt="img-icon" />
+            <img style={{ height:'32px', width:'32px', borderRadius:'20px'}} name="ashneer" src={Ashneer} alt="img-icon" />
+            <img style={{ height:'32px', width:'32px', borderRadius:'20px'}} name="aman" src={Aman} alt="img-icon" />
             
           </div>
           <button id="query-btn">Only My Issues</button>

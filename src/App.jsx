@@ -8,12 +8,15 @@ import ProjectSettings from "./Pages/ProjectSettings/ProjectSettings";
 import NotFoundPage from "./components/NotFound";
 import HomePage from "./Pages/HomePage/HomePage";
 import ticketService from "./backend/services/ticket.service";
+import projectService from "./backend/services/project.service";
 
 const TicketContext = createContext();
+const ProjetContext = createContext();
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [allTickets, setAllTickets] = useState([]);
+  const [projectDetails, setProjectDetails] = useState({});
 
   useEffect(() => {
     // Component Did Mount
@@ -23,6 +26,10 @@ function App() {
     // Update tickets state
     const tickets = ticketService.getAllTickets();
     setAllTickets(tickets);
+
+    //Update Project Name state
+      const projectDetails = projectService.getProjectDetails();
+      setProjectDetails(projectDetails);
 
     // Hide loader
     setLoading(false);
@@ -51,6 +58,7 @@ function App() {
     </div>
   ) : (
     <TicketContext.Provider value={{ allTickets, setAllTickets }}>
+      <ProjetContext.Provider value={{ projectDetails, setProjectDetails}} >
       <Router>
         {/* Left most side bar component of the application */}
         <SidebarOne />
@@ -63,9 +71,11 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
+      </ProjetContext.Provider>
     </TicketContext.Provider>
   );
 }
 export const useTicketContext = () => useContext(TicketContext);
+export const useProjectContext = () => useContext(ProjetContext);
 
 export default App;

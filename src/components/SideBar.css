@@ -7,14 +7,14 @@
 }
 .heading-one {
  text-decoration: solid;
- font-size: large;
- margin-left: 30px;
+ font-size: medium;
+ margin-left: 10px;
 }
 .heading-two {
-  margin-left: 77px;
+  margin-left: 10px;
   font-family: CircularStdBook;
   font-weight: normal;
-  font-size: small;
+  font-size: medium;
 }
 .onHover {
   display: inline-block;
@@ -61,14 +61,14 @@
   user-select: none;
   cursor: not-allowed;
   text-decoration: solid;
-  font-size: 19px;
+  font-size: medium;
   font-family: CircularStdBook;
   font-weight: normal;
 }
 .sb-btn {
   padding: 2px;
   margin: 5px;
-  font-size: larger;
+  font-size: medium;
   border-radius: 5px;
   cursor: pointer;
   color: rgb(66, 82, 110);
@@ -76,6 +76,6 @@
 }
 
 .sb-btn:hover {
-  color: white;
+  color: rgb(0, 82, 204);
   background-color: rgb(199, 199, 199);
 }

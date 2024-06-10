@@ -17,6 +17,7 @@
 .Top {
   justify-content: space-between;
   display: flex;
+  font-size: medium;
   padding: 20px;
   border-color: white;
   border: none;
@@ -43,13 +44,14 @@
   font-weight: lighter;
 }
 .ss-box {
-  margin-top: 10px;
+  margin-top: 0px;
   width:155%;
   height: 40px;
+  border: none;
 }
 .des-box {
-  padding: 20px;
   width: 80%;
+  border-color: rgb(234, 234, 234);
   margin-left: 20px;
   height: 100px;
 }

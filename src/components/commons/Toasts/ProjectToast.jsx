@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import Toast from "react-bootstrap/Toast";
 
-function CreateToast({ showToast }) {
-  const [show, setShow] = useState(showToast);
+function ProjectToast({ showProjectToast }) {
+  const [show, setShow] = useState(showProjectToast);
 
   return (
     <>
@@ -15,12 +15,8 @@ function CreateToast({ showToast }) {
           delay={3000}
           autohide
         >
-          <Toast.Header>
-            <strong className="me-auto">Jira Clone</strong>
-            <small>1 seconds ago</small>
-          </Toast.Header>
           <Toast.Body>
-            <h5>Issue has been successfully created.</h5>
+            <h5>Changes has been saved successfully.</h5>
           </Toast.Body>
         </Toast>
       </ToastContainer>
@@ -28,4 +24,4 @@ function CreateToast({ showToast }) {
   );
 }
 
-export default CreateToast;
+export default ProjectToast;

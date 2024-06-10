@@ -8,8 +8,8 @@
 }
 .pro-heading {
   margin-top: 35px;
-  margin-left: 350px;
-  font-size: 15px;
+  margin-left: 550px;
+  font-size: 14px;
   -webkit-tap-highlight-color: transparent;
   line-height: 1.2;
   font-family: CircularStdBook;
@@ -18,60 +18,59 @@
 }
 .ject-heading {
   color: rgb(23, 43, 77);
-  margin-top: 20px;
-  margin-left: 350px;
+  margin-top: 7px;
+  margin-left: 550px;
   font-family: CircularStdBook;
   padding: 6px 0px 15px;
-  font-size: 36px;
+  font-size: 25px;
   font-weight: 500;
 }
 #text {
-    display: block;
-    padding-bottom: 5px;
-    color: rgb(94, 108, 132);
-    font-family: CircularStdMedium;
-    margin-top: 0px;
-    margin-left: 350px;
-    font-weight: normal;
-    font-size: 18px;
+  margin-left: 550px;
+  color: rgb(94, 108, 132);
+  font-family: CircularStdMedium;
+  font-size: 14px;
 }
 .inputOne {
-    height: 100%;
-    width: 100%;
-    margin-left: 350px;
-    padding: 0px 0px;
-    border-radius: 3px;
-    border: none;
-    font-family: CircularStdBook;
-    font-weight: normal;
-    font-size: 15px;
-    cursor: text;
+  margin-top: 0px;
+  margin-left: 550px;
+  width: 90%;
+  border: none;
 }
 #block {
   width: 50%;
   height: 29px;
+  margin-top: 0px;
+  margin-left: 0px;
+  font-size: 14px;
+  border: none;
+  box-sizing: border-box;
   background-color: rgb(237, 237, 237);
-  border-color: rgb(238, 235, 235);
+  color: black;
 }
 #blocktwo {
- width: 50%;
- height: 150px;
- margin-left: 0px;
- margin-top: 0px;
- background-color: rgb(237, 237, 237);
- border-color: rgb(238, 235, 235);
+  width: 50%;
+  height: 150px;
+  margin-top: 0px;
+  margin-left: 0px;
+  font-size: 14px;
+  border: none;
+  box-sizing: border-box;
+  background-color: rgb(237, 237, 237);
+  color: black;
 }
 #texttwo {
-  margin-left: 350px;
   margin-top: 0px;
+  margin-left: 550px;
   color: rgb(94, 108, 132);
+  font-size: 13px;
 }
 .pro-btn {
   background-color: rgb(9, 88, 205);
   color: rgb(255, 255, 255);
-  margin-top: 45px;
-  height: 36px;
-  width: 9%;
+  margin-top: 25px;
+  height: 30px;
+  width: 10%;
   border: none;
   border-radius: 5px;
   cursor: pointer;

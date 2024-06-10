@@ -15,7 +15,7 @@ export default function SidebarOptions(props) {
     >
       {icon}
       {isExpanded ? (
-        <div style={{ marginLeft: "16px", fontSize: "16px" }}>{text}</div>
+        <div style={{ marginLeft: "16px", fontSize: "small" }}>{text}</div>
       ) : (
         <></>
       )}

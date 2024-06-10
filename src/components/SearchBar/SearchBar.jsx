@@ -35,7 +35,7 @@ export default function SearchBar({ allTickets, setSearchResults }) {
         <input
           type="search"
           name="search-form"
-          placeholder="Search here..."
+          placeholder="Search issues by summary, description..."
           id="ekbek"
           onChange={handleSearchChange}
         />

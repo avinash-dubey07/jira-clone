@@ -24,16 +24,21 @@ export default function SideBar() {
       onMouseEnter={() => setOptionOnHover(true)}
       onMouseLeave={() => setOptionOnHover(false)}
     >
+      <div style={{display:"flex", padding:'10px', marginTop:'12px', marginLeft:'23px'}}>
       <div>
         <SiProgress fontSize={"40px"} color="red" />
+        </div>
+        <div>
         <span className="heading-one"> {name}</span> <br />
         <span className="heading-two"> {projectCategory} Project</span>
-      </div>{" "}
-      <br />
+        </div>
+      </div>
+     
+    
       <div className="sidebar-btn">
         <div className="sb-btn">
           <SideBarOption
-            icon={<LiaChalkboardSolid fontSize={"21px"} />}
+            icon={<LiaChalkboardSolid fontSize={"20px"} />}
             text={"Kanban Board"}
             onHover={optionOnHover}
             onClick={() => navigate("")}
@@ -41,46 +46,46 @@ export default function SideBar() {
         </div>
         <div className="sb-btn">
           <SideBarOption
-            icon={<BsGearWideConnected fontSize={"21px"} />}
+            icon={<BsGearWideConnected fontSize={"20px"} />}
             text={"Project Setting"}
             onHover={optionOnHover}
             onClick={() => navigate("project-settings")}
           />
         </div>
-        <hr />
       </div>
+      <hr />
       <div className="bottom-sb">
         <div>
           <SideBarOption
-            icon={<MdRocket fontSize={"21px"} />}
+            icon={<MdRocket fontSize={"20px"} />}
             text={"Releases"}
             onHover={optionOnHover}
           />
         </div>
         <div>
           <SideBarOption
-            icon={<BsFilterSquareFill fontSize={"21px"} />}
+            icon={<BsFilterSquareFill fontSize={"20px"} />}
             text={"Issues and filters"}
             onHover={optionOnHover}
           />
         </div>
         <div>
           <SideBarOption
-            icon={<MdEventNote fontSize={"21px"} />}
+            icon={<MdEventNote fontSize={"20px"} />}
             text={"Pages"}
             onHover={optionOnHover}
           />
         </div>
         <div>
           <SideBarOption
-            icon={<BsGraphUpArrow fontSize={"21px"} />}
+            icon={<BsGraphUpArrow fontSize={"20px"} />}
             text={"Reports"}
             onHover={optionOnHover}
           />
         </div>
         <div>
           <SideBarOption
-            icon={<MdSettingsInputComponent fontSize={"21px"} />}
+            icon={<MdSettingsInputComponent fontSize={"20px"} />}
             text={"Components"}
             onHover={optionOnHover}
           />

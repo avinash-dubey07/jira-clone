@@ -36,15 +36,19 @@ export default function TicketEdit({ticket, ticketModal}) {
     
   }
 
+  const copyLink = () => {
+    console.log(' Link Copied')
+  }
+
   return (
     <>
      <div className='Top'>        
-      <h2 style={{color:
+      <h6 style={{color:
         "rgb(0, 82, 204)",
-      }}>{ticket.issueType}-{ticket.id}</h2>
+      }}>{ticket.issueType}-{ticket.id}</h6>
       <div className='top-btns'> 
          <button onClick={onClickHandler}> <BsFillSendFill /> Give feedback</button>
- <button> <IoIosLink /> Copy link</button>
+ <button onClick={copyLink}> <IoIosLink /> Copy link</button>
  <button onClick={deleteTicket}><AiOutlineDelete /></button>
  <button onClick={closeTicketModal}>&times;</button>
  </div>

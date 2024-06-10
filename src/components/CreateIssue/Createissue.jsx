@@ -58,7 +58,7 @@ function CreateIssue(props) {
     const isValid = validateTicket();
 
     if (!isValid) {
-      // TO DO : SHOW TOAST
+      alert("Invalid Inputs");
     }
 
     ticketService.createTicketInDB(createIssue);

@@ -127,11 +127,12 @@ function Kanban() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
+                    margin: "0px 8px",
                   }}
                   key={boardId}
                 >
-                  <h5 style={{ justifyContent: "center" }}>{board.name}</h5>
-                  <div style={{ margin: 7 }}>
+                  <div style={{ padding: 8 }}>{board.name}</div>
+                  <div style={{ marginBottom: 7 }}>
                     <Droppable droppableId={boardId} key={boardId}>
                       {(provided, snapshot) => {
                         return (
@@ -140,7 +141,7 @@ function Kanban() {
                             ref={provided.innerRef}
                             style={{
                               background: snapshot.isDraggingOver
-                                ? "rgb(223, 223, 223)"
+                                ? "rgb(242, 242, 242)"
                                 : "rgb(235, 235, 235)",
                               padding: 4,
                               width: 270,
@@ -166,7 +167,7 @@ function Kanban() {
                                           margin: "0 0 8px 0",
                                           minHeight: "50px",
                                           backgroundColor: snapshot.isDragging
-                                            ? "rgb(240, 240, 240)"
+                                            ? "rgb(245, 245, 245)"
                                             : "rgb(255, 255, 255)",
                                           color: "black",
 

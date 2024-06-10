@@ -89,7 +89,7 @@ export default function SidebarOne() {
           onClickHandler={onClickHandler}
         />
         {""}
-        <br></br>
+        <br />
         <SidebarOptions
           icon={<FaPlus fontSize={"21px"} />}
           text={"CREATE ISSUE"}
