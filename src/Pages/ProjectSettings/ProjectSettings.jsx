@@ -44,7 +44,6 @@ function Project() {
       alert("Invalid Inputs");
     }
     projectService.setProjectDetails(projectDetails);
-    setShowProjectToast(true);
   };
   return (
     <>

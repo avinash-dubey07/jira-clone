@@ -16,7 +16,7 @@ const ProjetContext = createContext();
 function App() {
   const [loading, setLoading] = useState(true);
   const [allTickets, setAllTickets] = useState([]);
-  const [projectDetails, setProjectDetails] = useState({});
+  const [projectName, setProjectName] = useState({});
 
   useEffect(() => {
     // Component Did Mount
@@ -29,7 +29,7 @@ function App() {
 
     //Update Project Name state
       const projectDetails = projectService.getProjectDetails();
-      setProjectDetails(projectDetails);
+      setProjectName(projectDetails);
 
     // Hide loader
     setLoading(false);
@@ -58,7 +58,7 @@ function App() {
     </div>
   ) : (
     <TicketContext.Provider value={{ allTickets, setAllTickets }}>
-      <ProjetContext.Provider value={{ projectDetails, setProjectDetails}} >
+      <ProjetContext.Provider value={{ projectName, setProjectName}} >
       <Router>
         {/* Left most side bar component of the application */}
         <SidebarOne />

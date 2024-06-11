@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 export default function SideBar() {
   const navigate = useNavigate();
   const [optionOnHover, setOptionOnHover] = useState(false);
-  const project = projectService.getProjectDetails();
+  const project = {name:"Singularity", url: "www.hqopss.com", description:" i am all set to launch", projectCategory:"Marketing"};
   const { name, projectCategory } = project;
 
   return (
