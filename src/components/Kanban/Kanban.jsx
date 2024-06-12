@@ -3,7 +3,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import "./Kanban.css";
 import ModalComponent from "../commons/Modal/Modal";
 import TicketEdit from "../../TicketEdit";
-import ticketService from "../../backend/services/ticket.service";
+import DeleteToast from "../commons/Toasts/DeleteToast";
 import { useTicketContext } from "../../App";
 
 const onDragEnd = (result, boards, setBoards) => {
@@ -50,6 +50,7 @@ const onDragEnd = (result, boards, setBoards) => {
 
 function Kanban() {
   const [showTicketModal, setShowTicketModal] = useState(false);
+  const [showDeleteToast, setShowDeleteToast] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState();
   const [ticketModified, setTicketModified] = useState(false);
 
@@ -213,6 +214,7 @@ function Kanban() {
           //5.  rerender the UI kanban board.
         />
       )}
+      {showDeleteToast && <DeleteToast showToast={showDeleteToast} />}
     </>
   );
 }

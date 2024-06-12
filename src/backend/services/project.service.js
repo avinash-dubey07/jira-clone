@@ -5,11 +5,11 @@ function getProjectDetails() {
   return project;
 }
 
-function setProjectDetails(name, url, description, projectCategory) {
+function setProjectDetails(name, url, description, category) {
   db.project.name = name;
   db.project.url = url;
   db.project.description = description;
-  db.project.projectCategory = projectCategory;
+  db.project.category = category;
 }
 
 export default {

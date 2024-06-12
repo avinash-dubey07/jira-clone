@@ -9,7 +9,6 @@ function ModalComponent(props) {
       onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      
     >
       {component}
     </Modal>

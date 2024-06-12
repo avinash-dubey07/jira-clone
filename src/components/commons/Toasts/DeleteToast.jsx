@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import Toast from "react-bootstrap/Toast";
 
-function ProjectToast({ showProjectToast }) {
-  const [show, setShow] = useState(showProjectToast);
+function DeleteToast({ showDeleteToast }) {
+  const [show, setShow] = useState(showDeleteToast);
 
   return (
     <>
@@ -16,7 +16,7 @@ function ProjectToast({ showProjectToast }) {
           autohide
         >
           <Toast.Body>
-            <h6>Changes has been saved successfully.</h6>
+            <h6>Ticket has been removed successfully.</h6>
           </Toast.Body>
         </Toast>
       </ToastContainer>
@@ -24,4 +24,4 @@ function ProjectToast({ showProjectToast }) {
   );
 }
 
-export default ProjectToast;
+export default DeleteToast;

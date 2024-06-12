@@ -1,34 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProjectSettings.css";
 import { useProjectContext } from "../../App";
+import ProjectToast from "../../components/commons/Toasts/ProjectToast";
 import projectService from "../../backend/services/project.service";
 
 function Project() {
   const [showProjectToast, setShowProjectToast] = useState(false);
+  const { project } = useProjectContext();
   const { setProject } = useProjectContext();
-  const [projectDetails, setProjectDetails] = useState({
-    name: "Singularity 1.0",
-    url: "",
-    description: "",
-    projectCategory: "",
-  });
+  const [projectDetails, setProjectDetails] = useState(project);
 
   const onChangeHandler = (e) => {
-    const {name, value } = e.target;
+    const { name, value } = e.target;
     setProjectDetails({
       ...projectDetails,
-      [name] : value
+      [name]: value,
     });
   };
-
+  
   const validateProject = () => {
-    const { name, url, description, projectCategory } = projectDetails;
+    const { name, url, description, category } = projectDetails;
 
     if (
       !name.length ||
       !url.length ||
       !description.length ||
-      !projectCategory.length
+      !category.length
     ) {
       return false;
     }
@@ -42,14 +39,19 @@ function Project() {
 
     if (!isValid) {
       alert("Invalid Inputs");
+      return;
     }
-    projectService.setProjectDetails(projectDetails);
+    const { name, url, description, category } = projectDetails;
+    projectService.setProjectDetails(name, url, description, category);
+    setProject(projectDetails);
+    setShowProjectToast(true);
   };
+  
   return (
     <>
       <div className="pro-heading">
         <label>Projects &nbsp;&nbsp;/ &nbsp;&nbsp; </label>
-        <label>{projectDetails.name} &nbsp;&nbsp;/ &nbsp;&nbsp;</label>
+        <label>{project.name} &nbsp;&nbsp;/ &nbsp;&nbsp;</label>
         <label>Project Details </label>
       </div>
       <div>
@@ -103,11 +105,11 @@ function Project() {
         <select
           name="category"
           className="dropDown"
-          value={projectDetails.projectCategory}
+          value={projectDetails.category}
           placeholder="Select"
           onChange={onChangeHandler}
         >
-          <option   selected disabled hidden>
+          <option value={""} disabled hidden>
             Choose Category
           </option>
           <option value="Business">Business</option>
@@ -119,6 +121,7 @@ function Project() {
           Save Changes
         </button>
       </div>
+      {showProjectToast && <ProjectToast showToast={showProjectToast} />}
     </>
   );
 }

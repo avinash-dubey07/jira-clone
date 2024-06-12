@@ -9,14 +9,15 @@ import { MdEventNote } from "react-icons/md";
 import { MdSettingsInputComponent } from "react-icons/md";
 import "./SideBar.css";
 import SideBarOption from "./commons/SidebarOptions/SideBarOption";
-import projectService from "../backend/services/project.service";
 import { useNavigate } from "react-router-dom";
+import { useProjectContext } from "../App";
 
 export default function SideBar() {
   const navigate = useNavigate();
   const [optionOnHover, setOptionOnHover] = useState(false);
-  const project = {name:"Singularity", url: "www.hqopss.com", description:" i am all set to launch", projectCategory:"Marketing"};
-  const { name, projectCategory } = project;
+  const {project} = useProjectContext();
+  const { name, category } = project;
+  
 
   return (
     <div
@@ -29,8 +30,8 @@ export default function SideBar() {
         <SiProgress fontSize={"40px"} color="red" />
         </div>
         <div>
-        <span className="heading-one"> {name}</span> <br />
-        <span className="heading-two"> {projectCategory} Project</span>
+        <span className="heading-one"> {name} </span> <br />
+        <span className="heading-two"> {category} Project</span>
         </div>
       </div>
      

@@ -16,7 +16,12 @@ const ProjetContext = createContext();
 function App() {
   const [loading, setLoading] = useState(true);
   const [allTickets, setAllTickets] = useState([]);
-  const [projectName, setProjectName] = useState({});
+  const [project, setProject] = useState({
+    name: "",
+    url: "",
+    description: "",
+    category: "",
+  });
 
   useEffect(() => {
     // Component Did Mount
@@ -28,8 +33,8 @@ function App() {
     setAllTickets(tickets);
 
     //Update Project Name state
-      const projectDetails = projectService.getProjectDetails();
-      setProjectName(projectDetails);
+    const projectDetails = projectService.getProjectDetails();
+    setProject(projectDetails);
 
     // Hide loader
     setLoading(false);
@@ -58,19 +63,19 @@ function App() {
     </div>
   ) : (
     <TicketContext.Provider value={{ allTickets, setAllTickets }}>
-      <ProjetContext.Provider value={{ projectName, setProjectName}} >
-      <Router>
-        {/* Left most side bar component of the application */}
-        <SidebarOne />
-        {/* Adjoing side bar */}
-        <SideBar />
-        {/* Render component based on the url path. Defaults to render HomPage with Kanband Board */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/project-settings" element={<ProjectSettings />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Router>
+      <ProjetContext.Provider value={{ project, setProject }}>
+        <Router>
+          {/* Left most side bar component of the application */}
+          <SidebarOne />
+          {/* Adjoing side bar */}
+          <SideBar />
+          {/* Render component based on the url path. Defaults to render HomPage with Kanband Board */}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/project-settings" element={<ProjectSettings />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Router>
       </ProjetContext.Provider>
     </TicketContext.Provider>
   );

@@ -22,7 +22,6 @@ export default function SearchBar({ allTickets, setSearchResults }) {
         ticket.shortSummary.toLowerCase().includes(searchText.toLowerCase()) ||
         ticket.description.toLowerCase().includes(searchText.toLowerCase())
     );
-
     setSearchResults(searchResult);
   };
 

@@ -46,14 +46,28 @@
 .ss-box {
   margin-top: 0px;
   width:155%;
+  padding: 5px;
   height: 40px;
   border: none;
 }
 .des-box {
   width: 80%;
-  border-color: rgb(234, 234, 234);
+  border: none;
   margin-left: 20px;
   height: 100px;
+}
+.ticket-input {
+  margin-top: 0px;
+  margin-left: 20px;
+  color: rgb(94, 108, 132);
+  font-family: CircularStdMedium;
+  font-size: medium;
+}
+.input-headings {
+  margin-top: 10px;
+  color: rgb(94, 108, 132);
+  font-family: CircularStdMedium;
+  font-size: small;
 }
 
 .blue-btn {

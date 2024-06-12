@@ -9,7 +9,7 @@ function CreateToast({ showToast }) {
     <>
       <ToastContainer position="top-end" className="p-3" style={{ zIndex: 1 }}>
         <Toast
-          style={{ background: "rgb(9, 182, 9)", color: "white" }}
+          style={{ background: "rgb(5, 137, 5)", color: "white" }}
           onClose={() => setShow(false)}
           show={show}
           delay={3000}
@@ -20,7 +20,7 @@ function CreateToast({ showToast }) {
             <small>1 seconds ago</small>
           </Toast.Header>
           <Toast.Body>
-            <h5>Issue has been successfully created.</h5>
+            <h6>Issue has been successfully created.</h6>
           </Toast.Body>
         </Toast>
       </ToastContainer>
