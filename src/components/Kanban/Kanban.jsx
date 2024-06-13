@@ -6,7 +6,7 @@ import TicketEdit from "../../TicketEdit";
 import DeleteToast from "../commons/Toasts/DeleteToast";
 import { useTicketContext } from "../../App";
 
-const onDragEnd = (result, boards, setBoards) => {
+const onDragEnd = async (result, boards, setBoards) => {
   if (!result.destination) return;
   const { source, destination } = result;
 
@@ -16,7 +16,7 @@ const onDragEnd = (result, boards, setBoards) => {
 
     const sourceTickets = [...sourceBoard.tickets];
     const destTickets = [...destBoard.tickets];
-
+    
     const [removed] = sourceTickets.splice(source.index, 1);
 
     destTickets.splice(destination.index, 0, removed);
@@ -111,7 +111,7 @@ function Kanban() {
           style={{
             display: "flex",
             justifyContent: "center",
-            height: "100%",
+            height: "70%",
             marginLeft: "280px",
             fontFamily: "CircularStdBook",
             fontSize: "16px",

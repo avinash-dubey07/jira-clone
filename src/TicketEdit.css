@@ -24,27 +24,26 @@
 }
 .top-btns {
   display: inline-flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
   height: 39px;
-  vertical-align: middle;
-  line-height: 1;
-  padding: 0px 12px;
-  white-space: nowrap;
-  border-radius: 3px;
-  transition: all 0.1s ease 0s;
-  appearance: none;
   cursor: pointer;
-  font-size: 16px;
-  background: rgb(255, 255, 255);
-  color: rgb(66, 82, 110);
   font-family: CircularStdBook;
   font-weight: lighter;
 }
+.upper-left-btns {
+  padding: 7px;
+  border: none;
+  background: rgb(255, 255, 255);
+  color: rgb(66, 82, 110);
+}
+
+.upper-left-btns:hover {
+  background-color: rgb(242, 242, 242)
+}
 .ss-box {
-  margin-top: 0px;
+  margin-top: -20px;
+  font-size: xx-large;
   width:155%;
   padding: 5px;
   height: 40px;
@@ -57,15 +56,15 @@
   height: 100px;
 }
 .ticket-input {
-  margin-top: 0px;
+  margin-top: 10px;
   margin-left: 20px;
-  color: rgb(94, 108, 132);
+  color: rgb(93, 93, 93);
   font-family: CircularStdMedium;
   font-size: medium;
 }
 .input-headings {
   margin-top: 10px;
-  color: rgb(94, 108, 132);
+  color: rgb(93, 93, 93);
   font-family: CircularStdMedium;
   font-size: small;
 }
@@ -75,11 +74,12 @@
   color: rgb(255, 255, 255);
   margin-top: 10px;
   margin-left: 20px;
+  padding: 3px;
   border: none;
-  width: 50px;
+  border-radius: 5px;
+  width: 60px;
   height: 30px;
-  margin-left: 20px;
-  border-color: rgb(0, 82, 204);
+  font-size: medium;
 }
 
 .base-container {

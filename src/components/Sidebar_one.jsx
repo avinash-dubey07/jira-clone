@@ -64,7 +64,6 @@ export default function SidebarOne() {
     }
   };
 
- 
   const onSearchIssueHandler = (tickets, shortSummary) => {
     const ticketsInDb = ticketService.getTicketsFromDB(tickets);
     const ticketSummary = ticketsInDb.shortSummary;
@@ -107,7 +106,12 @@ export default function SidebarOne() {
         <ModalComponent
           show={showCreateIssueModal}
           onHide={() => setShowCreateIssueModal(false)}
-          component={<CreateIssue setShowModal={setShowCreateIssueModal} setShowToast={setShowToast} />}
+          component={
+            <CreateIssue
+              setShowModal={setShowCreateIssueModal}
+              setShowToast={setShowToast}
+            />
+          }
         />
         <ModalComponent
           show={showSearchIssueModal}

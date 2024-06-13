@@ -9,7 +9,7 @@ function DeleteToast({ showDeleteToast }) {
     <>
       <ToastContainer position="top-end" className="p-3" style={{ zIndex: 1 }}>
         <Toast
-          style={{ background: "rgb(5, 137, 5)", color: "white" }}
+          style={{ background: "rgb(39, 136, 39)", color: "white" }}
           onClose={() => setShow(false)}
           show={show}
           delay={3000}

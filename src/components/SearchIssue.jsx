@@ -18,11 +18,11 @@ export default function SearchIssue() {
       <div className="tickets">
         {searchResults.map((ticket) => {
           return (
-            <li>
+            <div className="each-ticket">
               {ticket.shortSummary}
-              <br /> &nbsp;&nbsp; &nbsp;&nbsp;{ticket.issueType.toUpperCase()}-
+              <br />{ticket.issueType.toUpperCase()}-
               {ticket.id}
-            </li>
+            </div>
           );
         })}
       </div>

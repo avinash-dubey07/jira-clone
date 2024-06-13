@@ -12,7 +12,6 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import ticketService from "./backend/services/ticket.service";
 import { useTicketContext } from "./App";
 
-
 export default function TicketEdit({ ticket, ticketModal }) {
   const [showAboutModal, setShowAboutModal] = useState(false);
   const { setAllTickets } = useTicketContext();
@@ -47,18 +46,18 @@ export default function TicketEdit({ ticket, ticketModal }) {
           {ticket.issueType}-{ticket.id}
         </h6>
         <div className="top-btns">
-          <button onClick={onClickHandler}>
+          <button className="upper-left-btns" onClick={onClickHandler}>
             {" "}
             <BsFillSendFill /> Give feedback
           </button>
-          <button onClick={copyLink}>
+          <button className="upper-left-btns" onClick={copyLink}>
             {" "}
             <IoIosLink /> Copy link
           </button>
-          <button onClick={deleteTicket}>
+          <button className="upper-left-btns"  onClick={deleteTicket}>
             <AiOutlineDelete />
           </button>
-          <button onClick={closeTicketModal}>&times;</button>
+          <button className="upper-left-btns" style={{fontSize:'23px'}} onClick={closeTicketModal}>&times;</button>
         </div>
         <ModalComponent
           show={showAboutModal}
@@ -81,7 +80,7 @@ export default function TicketEdit({ ticket, ticketModal }) {
             <span>Description</span>
           </div>
           <div>
-            <input
+            <input 
               className="des-box"
               type="text"
               value={ticket.description}
@@ -106,7 +105,7 @@ export default function TicketEdit({ ticket, ticketModal }) {
             alt="Icon"
           />
           <input
-            style={{ marginLeft: "20px", width: "69%", height: "40px" }}
+            style={{ marginLeft: "20px", marginTop:'20px', width: "69%", height: "40px" }}
             type="text"
             name="comment"
             placeholder="Add a comment..."

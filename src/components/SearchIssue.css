@@ -14,11 +14,12 @@
   margin-left: 25px;
   color: rgb(94, 108, 132);
   font-family: CircularStdMedium;
-  font-size: small;
+  font-size: smaller;
 }
 #ekbek {
   border: none;
   border-radius: 7px;
+  font-size: x-large;
   padding: 5px;
   width: 90%;
   height: 60px;
@@ -29,7 +30,7 @@
 .search-icon{
   margin-top: 10px;
   margin-left: 25px;
-  font-size:x-large;
+  font-size:xx-large;
 }
 
 .tickets{
@@ -38,6 +39,10 @@
   font-size: small;
   font-weight: normal;
   display: block;
-  margin-left: 20px;
-  
+  margin-left: 35px;
+  margin-top: 3px;
+}
+
+.each-ticket {
+  margin-top: 5px;
 }
