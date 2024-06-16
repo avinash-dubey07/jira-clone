@@ -7,7 +7,9 @@ import { FaSearch } from "react-icons/fa";
 import { GrCircleQuestion } from "react-icons/gr";
 import SidebarOptions from "./commons/SidebarOptions/SidebarOptions";
 import ticketService from "../backend/services/ticket.service";
-import ModalComponent from "./commons/Modal/Modal";
+import ModalComponent from "./commons/Modal/CreateModal";
+import CreateModal from "./commons/Modal/CreateModal";
+import AboutModal from "./commons/Modal/AboutModal";
 import CreateIssue from "./CreateIssue/Createissue";
 import SearchIssue from "./SearchIssue";
 import About from "./About";
@@ -23,8 +25,8 @@ export default function SidebarOne() {
   const [showSearchIssueModal, setShowSearchIssueModal] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
   const [createIssue, setCreateIssue] = useState({
     issueType: "",
@@ -103,7 +105,7 @@ export default function SidebarOne() {
             onClickHandler={onClickHandler}
           />
         </div>
-        <ModalComponent
+        <CreateModal
           show={showCreateIssueModal}
           onHide={() => setShowCreateIssueModal(false)}
           component={
@@ -118,7 +120,7 @@ export default function SidebarOne() {
           onHide={() => setShowSearchIssueModal(false)}
           component={<SearchIssue />}
         />
-        <ModalComponent
+        <AboutModal
           show={showAboutModal}
           onHide={() => setShowAboutModal(false)}
           component={<About />}

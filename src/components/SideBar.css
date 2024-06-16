@@ -1,18 +1,23 @@
 #main-logo {
   font-size: xx-large;
-  color: rgb(187, 10, 10);
+  color: rgb(19, 135, 19);
   margin-top: 30px;
   margin-left: 14px;
   block-size: 2.5rem;
 }
+/* rgb(187, 10, 10) */
 .heading-one {
  text-decoration: solid;
  font-size: medium;
+ text-decoration: solid;
  margin-left: 10px;
 }
+
 .heading-two {
   margin-left: 10px;
+  margin-bottom: 10px;
   font-family: CircularStdBook;
+  color: rgb(66, 82, 110);
   font-weight: normal;
   font-size: medium;
 }
@@ -52,6 +57,9 @@
 
 .sidebar-btn {
   text-align: left;
+}
+.options {
+  margin-top: 12px;
 }
 .bottom-sb {
   margin-top: 30px;

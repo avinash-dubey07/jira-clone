@@ -2,6 +2,7 @@
   width: 50%;
   height: 29px;
   font-size: 14px;
+  padding: 5px;
   box-sizing: border-box;
   background-color: rgb(237, 237, 237);
   color: black;
@@ -41,6 +42,7 @@
   width: 50%;
   height: 29px;
   margin-top: 0px;
+  padding: 5px;
   margin-left: 0px;
   font-size: 14px;
   border: none;
@@ -53,6 +55,7 @@
   height: 150px;
   margin-top: 0px;
   margin-left: 0px;
+  padding: 5px;
   font-size: 14px;
   border: none;
   box-sizing: border-box;

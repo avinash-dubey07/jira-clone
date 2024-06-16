@@ -16,7 +16,7 @@ function CreateIssue(props) {
     reporter: "",
     assignees: [],
     priority: "",
-    status: "BACKLOG",
+    status: "backlog",
   });
 
   const onChangeHandler = (event) => {

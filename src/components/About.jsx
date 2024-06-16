@@ -12,7 +12,7 @@ export default function About() {
 
   return (
     <>
-      <div>
+      <div className="abt-container">
         <img className="fb-img" src={feedback} alt="Feedback Image" />
         <p className="para">
           {" "}

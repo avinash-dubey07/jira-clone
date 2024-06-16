@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import "./Kanban.css";
-import ModalComponent from "../commons/Modal/Modal";
+import TicketModal from "../commons/Modal/TicketModal";
 import TicketEdit from "../../TicketEdit";
 import DeleteToast from "../commons/Toasts/DeleteToast";
 import { useTicketContext } from "../../App";
+import ticketService from "../../backend/services/ticket.service";
+import { RiTaskFill } from "react-icons/ri";
+import { FaBug } from "react-icons/fa6";
+import { SiStorybook } from "react-icons/si";
+import { TfiArrowUp } from "react-icons/tfi";
+import { TfiArrowDown } from "react-icons/tfi";
 
 const onDragEnd = async (result, boards, setBoards) => {
   if (!result.destination) return;
@@ -16,8 +22,9 @@ const onDragEnd = async (result, boards, setBoards) => {
 
     const sourceTickets = [...sourceBoard.tickets];
     const destTickets = [...destBoard.tickets];
-    
+
     const [removed] = sourceTickets.splice(source.index, 1);
+    removed.status = destination.droppableId;
 
     destTickets.splice(destination.index, 0, removed);
 
@@ -32,6 +39,8 @@ const onDragEnd = async (result, boards, setBoards) => {
         tickets: destTickets,
       },
     });
+
+    ticketService.updateTicketInDB(removed.id, removed);
   } else {
     const board = boards[source.droppableId];
     const copiedItems = [...board.tickets];
@@ -45,6 +54,7 @@ const onDragEnd = async (result, boards, setBoards) => {
         tickets: copiedItems,
       },
     });
+    ticketService.updateTicketInDB(removed.id, removed);
   }
 };
 
@@ -52,9 +62,8 @@ function Kanban() {
   const [showTicketModal, setShowTicketModal] = useState(false);
   const [showDeleteToast, setShowDeleteToast] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState();
-  const [ticketModified, setTicketModified] = useState(false);
+  const { allTickets, setAllTickets } = useTicketContext();
 
-  const { allTickets } = useTicketContext();
   // Function to filter tickets based on their status
   const getFilteredTickets = (status) => {
     const filteredTickets = allTickets.filter(
@@ -67,19 +76,19 @@ function Kanban() {
     return {
       backlog: {
         name: "Backlogs",
-        tickets: getFilteredTickets("BACKLOG"),
+        tickets: getFilteredTickets("backlog"),
       },
       todo: {
         name: "To Do",
-        tickets: getFilteredTickets("SELECTED FOR DEVELOPMENT"),
+        tickets: getFilteredTickets("todo"),
       },
       inProgress: {
         name: "In Progress",
-        tickets: getFilteredTickets("IN PROGRESS"),
+        tickets: getFilteredTickets("inProgress"),
       },
       done: {
         name: "Done",
-        tickets: getFilteredTickets("DONE"),
+        tickets: getFilteredTickets("done"),
       },
     };
   };
@@ -165,7 +174,7 @@ function Kanban() {
                                         style={{
                                           userSelect: "none",
                                           padding: 16,
-                                          margin: "0 0 8px 0",
+                                          margin: "0 0 5px 0",
                                           minHeight: "50px",
                                           backgroundColor: snapshot.isDragging
                                             ? "rgb(245, 245, 245)"
@@ -178,7 +187,60 @@ function Kanban() {
                                           onTicketClickHandler(boardId, index)
                                         }
                                       >
-                                        {ticket.shortSummary}
+                                        <div className="ticket-icons">
+                                          {ticket.issueType === "Bug" && (
+                                            <FaBug
+                                              style={{
+                                                color: "rgb(217, 3, 3)",
+                                                fontSize: "18px",
+                                              }}
+                                            />
+                                          )}
+                                          {ticket.issueType === "Task" && (
+                                            <RiTaskFill
+                                              style={{
+                                                color: "rgb(45, 156, 193)",
+                                                fontSize: "18px",
+                                              }}
+                                            />
+                                          )}
+                                          {ticket.issueType === "Story" && (
+                                            <SiStorybook
+                                              style={{
+                                                color: "rgb(3, 133, 3)",
+                                                fontSize: "18px",
+                                              }}
+                                            />
+                                          )}
+                                          <div className="ss-heading">{ticket.shortSummary}</div>
+
+                                          <div className="priority-icon">
+                                          {ticket.priority === "Urgent" && (
+                                            <TfiArrowUp  style={{
+                                              color: "rgb(170, 2, 2)",
+                                              fontSize: "18px",
+                                            }} />
+                                          )}
+                                          {ticket.priority === "High" && (
+                                            <TfiArrowUp  style={{
+                                              color: "rgb(220, 5, 5)",
+                                              fontSize: "18px",
+                                            }} />
+                                          )}
+                                          {ticket.priority === "Medium" && (
+                                            <TfiArrowUp  style={{
+                                              color: "rgb(245, 162, 7)",
+                                              fontSize: "18px",
+                                            }} />
+                                          )}
+                                          {ticket.priority === "Low" && (
+                                            <TfiArrowDown  style={{
+                                              color: "rgb(19, 135, 19)",
+                                              fontSize: "18px",
+                                            }} />
+                                          )}
+                                          </div>
+                                        </div>
                                       </div>
                                     );
                                   }}
@@ -198,7 +260,7 @@ function Kanban() {
         </div>
       </div>
       {showTicketModal && (
-        <ModalComponent
+        <TicketModal
           show={showTicketModal}
           onHide={() => setShowTicketModal(false)}
           component={

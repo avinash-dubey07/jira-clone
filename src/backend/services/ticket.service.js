@@ -87,7 +87,7 @@ function updateTicketInDB(ticketId, updatedTicket) {
 
   // if a valid index is found then update the ticket to the one passed to function
   if (index >= 0) {
-    ticketsInDB[index] = updatedTicket;
+    ticketsInDB[index] = { ...ticketsInDB[index], ...updatedTicket };
   }
 }
 

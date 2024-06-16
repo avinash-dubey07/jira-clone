@@ -1,7 +1,6 @@
 .ticket-container1{
   width: 60%;
   display: block;
-  padding: 20px;
   font-size: 16px;
   font-family: CircularStdBook;
   font-weight: normal;
@@ -17,8 +16,10 @@
 .Top {
   justify-content: space-between;
   display: flex;
+  align-items: center;
   font-size: medium;
-  padding: 20px;
+  margin-top: 5px;
+  padding: 40px;
   border-color: white;
   border: none;
 }
@@ -44,20 +45,26 @@
 .ss-box {
   margin-top: -20px;
   font-size: xx-large;
-  width:155%;
+  width:100%;
   padding: 5px;
   height: 40px;
   border: none;
 }
 .des-box {
   width: 80%;
-  border: none;
+  border-radius: 3px;
+  padding: 3px;
   margin-left: 20px;
-  height: 100px;
+  height: 180px;
+}
+
+.select-dialogs {
+  padding: 3px;
+  margin-top: 5px;
 }
 .ticket-input {
   margin-top: 10px;
-  margin-left: 20px;
+  margin-left: 7px;
   color: rgb(93, 93, 93);
   font-family: CircularStdMedium;
   font-size: medium;
@@ -82,11 +89,18 @@
   font-size: medium;
 }
 
+.modal-btns {
+  margin-top: 10px;
+  margin-left: 30px;
+  padding: 10px;
+}
+
 .base-container {
   display: flex;
   justify-content: space-between;
   margin: 0px;
-  padding: 0px;
+  padding: 40px;
+  padding-top: 0px;
   width: 100%;
   height: 100%;
 }

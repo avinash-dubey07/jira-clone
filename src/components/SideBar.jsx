@@ -63,28 +63,28 @@ export default function SideBar() {
             onHover={optionOnHover}
           />
         </div>
-        <div>
+        <div className="options">
           <SideBarOption
             icon={<BsFilterSquareFill fontSize={"20px"} />}
             text={"Issues and filters"}
             onHover={optionOnHover}
           />
         </div>
-        <div>
+        <div className="options">
           <SideBarOption
             icon={<MdEventNote fontSize={"20px"} />}
             text={"Pages"}
             onHover={optionOnHover}
           />
         </div>
-        <div>
+        <div className="options">
           <SideBarOption
             icon={<BsGraphUpArrow fontSize={"20px"} />}
             text={"Reports"}
             onHover={optionOnHover}
           />
         </div>
-        <div>
+        <div className="options">
           <SideBarOption
             icon={<MdSettingsInputComponent fontSize={"20px"} />}
             text={"Components"}

@@ -29,12 +29,20 @@ function App() {
     initalizeDB();
 
     // Update tickets state
-    const tickets = ticketService.getAllTickets();
-    setAllTickets(tickets);
+    const fetchTickets = async () => {
+      const tickets = await ticketService.getAllTickets();
+      setAllTickets(tickets);
+    };
 
     //Update Project Name state
-    const projectDetails = projectService.getProjectDetails();
-    setProject(projectDetails);
+    const fetchProjectDetails = async () => {
+      const projectDetails = await projectService.getProjectDetails();
+      setProject(projectDetails);
+    };
+
+    // Call fetch functions
+    fetchTickets();
+    fetchProjectDetails();
 
     // Hide loader
     setLoading(false);

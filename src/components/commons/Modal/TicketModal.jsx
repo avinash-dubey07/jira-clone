@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 
-function ModalComponent(props) {
+function TicketModal(props) {
   const { show, onHide, component } = props;
   return (
     <Modal
@@ -15,4 +15,4 @@ function ModalComponent(props) {
   );
 }
 
-export default ModalComponent;
+export default TicketModal;
