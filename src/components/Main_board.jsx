@@ -37,7 +37,7 @@ export default function MainBoard() {
       <div className="main-header">
         <h4 className="HEADING">Kanban Board</h4>
         <button className="repo-btn" onClick={routeChange}>
-          <FaGithub style={{}} /> Github Repo
+          <FaGithub /> Github Repo
         </button>
       </div>
       <div>

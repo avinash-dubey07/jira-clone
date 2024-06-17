@@ -143,7 +143,7 @@ export default function TicketEdit({ ticket, ticketModal, issueType }) {
             <label>STATUS</label>
             <div>
               <select className="select-dialogs" name="status" value={ticketData.status} onChange={handleChange}>
-                <option value="todo">To Do</option>
+                <option value="todo">TO DO</option>
                 <option value="backlog">BACKLOG</option>
                 <option value="inProgress">IN PROGRESS</option>
                 <option value="done">DONE</option>

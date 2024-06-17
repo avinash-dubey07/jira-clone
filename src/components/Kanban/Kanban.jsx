@@ -67,9 +67,12 @@ function Kanban() {
   const getFilteredTickets = (status) => {
     return allTickets
       .filter((ticket) => ticket.status === status)
-      .filter((ticket) => 
-        ticket.shortSummary.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        ticket.description.toLowerCase().includes(searchTerm.toLowerCase())
+      .filter(
+        (ticket) =>
+          ticket.shortSummary
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          ticket.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
   };
 
@@ -189,57 +192,75 @@ function Kanban() {
                                         }
                                       >
                                         <div className="ticket-icons">
-                                          {ticket.issueType === "Bug" && (
-                                            <FaBug
-                                              style={{
-                                                color: "rgb(217, 3, 3)",
-                                                fontSize: "18px",
-                                              }}
-                                            />
-                                          )}
-                                          {ticket.issueType === "Task" && (
-                                            <RiTaskFill
-                                              style={{
-                                                color: "rgb(45, 156, 193)",
-                                                fontSize: "18px",
-                                              }}
-                                            />
-                                          )}
-                                          {ticket.issueType === "Story" && (
-                                            <SiStorybook
-                                              style={{
-                                                color: "rgb(3, 133, 3)",
-                                                fontSize: "18px",
-                                              }}
-                                            />
-                                          )}
-                                          <div className="ss-heading">{ticket.shortSummary}</div>
+                                          <div
+                                            style={{
+                                              display: "flex",
+                                              justifyContent: "center",
+                                              alignItems: "center",
+                                            }}
+                                          >
+                                            {ticket.issueType === "Bug" && (
+                                              <FaBug
+                                                style={{
+                                                  color: "rgb(217, 3, 3)",
+                                                  fontSize: "18px",
+                                                }}
+                                              />
+                                            )}
+                                            {ticket.issueType === "Task" && (
+                                              <RiTaskFill
+                                                style={{
+                                                  color: "rgb(45, 156, 193)",
+                                                  fontSize: "18px",
+                                                }}
+                                              />
+                                            )}
+                                            {ticket.issueType === "Story" && (
+                                              <SiStorybook
+                                                style={{
+                                                  color: "rgb(3, 133, 3)",
+                                                  fontSize: "18px",
+                                                }}
+                                              />
+                                            )}
+                                          </div>
+                                          <div className="ss-heading">
+                                            {ticket.shortSummary}
+                                          </div>
 
                                           <div className="priority-icon">
-                                          {ticket.priority === "Urgent" && (
-                                            <TfiArrowUp  style={{
-                                              color: "rgb(170, 2, 2)",
-                                              fontSize: "18px",
-                                            }} />
-                                          )}
-                                          {ticket.priority === "High" && (
-                                            <TfiArrowUp  style={{
-                                              color: "rgb(220, 5, 5)",
-                                              fontSize: "18px",
-                                            }} />
-                                          )}
-                                          {ticket.priority === "Medium" && (
-                                            <TfiArrowUp  style={{
-                                              color: "rgb(245, 162, 7)",
-                                              fontSize: "18px",
-                                            }} />
-                                          )}
-                                          {ticket.priority === "Low" && (
-                                            <TfiArrowDown  style={{
-                                              color: "rgb(19, 135, 19)",
-                                              fontSize: "18px",
-                                            }} />
-                                          )}
+                                            {ticket.priority === "Urgent" && (
+                                              <TfiArrowUp
+                                                style={{
+                                                  color: "rgb(170, 2, 2)",
+                                                  fontSize: "18px",
+                                                }}
+                                              />
+                                            )}
+                                            {ticket.priority === "High" && (
+                                              <TfiArrowUp
+                                                style={{
+                                                  color: "rgb(220, 5, 5)",
+                                                  fontSize: "18px",
+                                                }}
+                                              />
+                                            )}
+                                            {ticket.priority === "Medium" && (
+                                              <TfiArrowUp
+                                                style={{
+                                                  color: "rgb(245, 162, 7)",
+                                                  fontSize: "18px",
+                                                }}
+                                              />
+                                            )}
+                                            {ticket.priority === "Low" && (
+                                              <TfiArrowDown
+                                                style={{
+                                                  color: "rgb(19, 135, 19)",
+                                                  fontSize: "18px",
+                                                }}
+                                              />
+                                            )}
                                           </div>
                                         </div>
                                       </div>

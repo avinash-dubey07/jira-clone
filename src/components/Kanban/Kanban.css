@@ -13,11 +13,12 @@
   }
 
   .ticket-icons svg {
-  margin-right: 5px;
+  margin-right: 5px; 
 }
 
 .ss-heading {
-    margin-left: 5px;
+    padding-left: 5px;
+    width: calc(100% - 84px)
 }
 
 .priority-icon {
