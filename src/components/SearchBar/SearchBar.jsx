@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 
+
 export default function SearchBar({
   allTickets,
   setSearchResults,

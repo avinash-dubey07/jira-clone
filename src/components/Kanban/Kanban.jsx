@@ -9,8 +9,7 @@ import ticketService from "../../backend/services/ticket.service";
 import { RiTaskFill } from "react-icons/ri";
 import { FaBug } from "react-icons/fa6";
 import { SiStorybook } from "react-icons/si";
-import { TfiArrowUp } from "react-icons/tfi";
-import { TfiArrowDown } from "react-icons/tfi";
+import { TfiArrowUp, TfiArrowDown } from "react-icons/tfi";
 
 const onDragEnd = async (result, boards, setBoards) => {
   if (!result.destination) return;
@@ -62,14 +61,16 @@ function Kanban() {
   const [showTicketModal, setShowTicketModal] = useState(false);
   const [showDeleteToast, setShowDeleteToast] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState();
-  const { allTickets, setAllTickets } = useTicketContext();
+  const { allTickets, setAllTickets, searchTerm } = useTicketContext();
 
-  // Function to filter tickets based on their status
+  // Function to filter tickets based on their status, short summary or description.
   const getFilteredTickets = (status) => {
-    const filteredTickets = allTickets.filter(
-      (ticket) => ticket.status === status
-    );
-    return filteredTickets;
+    return allTickets
+      .filter((ticket) => ticket.status === status)
+      .filter((ticket) => 
+        ticket.shortSummary.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        ticket.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
   };
 
   const getBoards = () => {
@@ -101,7 +102,7 @@ function Kanban() {
   useEffect(() => {
     const updatedBoards = getBoards();
     setBoards({ ...updatedBoards });
-  }, [allTickets]);
+  }, [allTickets, searchTerm]);
 
   const onTicketClickHandler = (boardKey, ticketIndex) => {
     // Example -> Fix the bug

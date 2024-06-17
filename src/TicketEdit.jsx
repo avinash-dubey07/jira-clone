@@ -8,11 +8,36 @@ import { IoIosLink } from "react-icons/io";
 import { AiOutlineDelete } from "react-icons/ai";
 import ticketService from "./backend/services/ticket.service";
 import { useTicketContext } from "./App";
+import { RiTaskFill } from "react-icons/ri";
+import { FaBug } from "react-icons/fa6";
+import { SiStorybook } from "react-icons/si";
 
-export default function TicketEdit({ ticket, ticketModal }) {
+export default function TicketEdit({ ticket, ticketModal, issueType }) {
   const [showAboutModal, setShowAboutModal] = useState(false);
   const { setAllTickets } = useTicketContext();
   const [ticketData, setTicketData] = useState({ ...ticket });
+
+  const getIconForIssueType = (issueType) => {
+    switch (issueType) {
+      case "Task":
+        return <RiTaskFill style={{
+          color: "rgb(45, 156, 193)",
+          fontSize: "15px",
+        }} />;
+      case "Bug":
+        return <FaBug style={{
+          color: "rgb(217, 3, 3)",
+          fontSize: "15px",
+        }} />;
+      case "Story":
+        return <SiStorybook style={{
+          color: "rgb(3, 133, 3)",
+          fontSize: "15px",
+        }} />;
+      default:
+        return null;
+    }
+  };
 
 // Important Change for ticket editable
   const handleChange = (e) => {
@@ -54,11 +79,12 @@ export default function TicketEdit({ ticket, ticketModal }) {
     ticketModal(false);
   };
 
+
   return (
     <>
       <div className="Top">
         <h6 style={{ color: "rgb(0, 82, 204)" }}>
-          {ticket.issueType}-{ticket.id}
+        {getIconForIssueType(ticket.issueType)} {ticket.issueType}-{ticket.id}
         </h6>
         <div className="top-btns">
           <button className="upper-left-btns" onClick={routeChange}>

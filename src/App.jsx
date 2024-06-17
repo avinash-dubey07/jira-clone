@@ -16,6 +16,7 @@ const ProjetContext = createContext();
 function App() {
   const [loading, setLoading] = useState(true);
   const [allTickets, setAllTickets] = useState([]);
+  const [ searchTerm, setSearchTerm ] = useState("");
   const [project, setProject] = useState({
     name: "",
     url: "",
@@ -70,7 +71,7 @@ function App() {
       </Spinner>
     </div>
   ) : (
-    <TicketContext.Provider value={{ allTickets, setAllTickets }}>
+    <TicketContext.Provider value={{ allTickets, setAllTickets, searchTerm, setSearchTerm }}>
       <ProjetContext.Provider value={{ project, setProject }}>
         <Router>
           {/* Left most side bar component of the application */}

@@ -8,7 +8,7 @@
 .ticket-container2 {
   display: block;
   width: 40%;
-  margin-left: 30px;
+  margin-left: 35px;
   font-size: 16px;
   font-family: CircularStdBook;
   font-weight: normal;
@@ -44,6 +44,7 @@
 }
 .ss-box {
   margin-top: -20px;
+  margin-left: -4px;
   font-size: xx-large;
   width:100%;
   padding: 5px;
@@ -54,17 +55,18 @@
   width: 80%;
   border-radius: 3px;
   padding: 3px;
-  margin-left: 20px;
+  margin-left: 3px;
   height: 180px;
 }
 
 .select-dialogs {
   padding: 3px;
   margin-top: 5px;
+  width: 97%;
 }
 .ticket-input {
   margin-top: 10px;
-  margin-left: 7px;
+  margin-left: 2px;
   color: rgb(93, 93, 93);
   font-family: CircularStdMedium;
   font-size: medium;
@@ -91,7 +93,7 @@
 
 .modal-btns {
   margin-top: 10px;
-  margin-left: 30px;
+  margin-left: 13px;
   padding: 10px;
 }
 

@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import "./SearchIssue.css";
 import SearchBar from "./SearchBar/SearchBar";
 import { useTicketContext } from "../App";
+import { RiTaskFill } from "react-icons/ri";
+import { FaBug } from "react-icons/fa6";
+import { SiStorybook } from "react-icons/si";
+import { TfiArrowUp, TfiArrowDown } from "react-icons/tfi";
 
 export default function SearchIssue() {
   const { allTickets } = useTicketContext();
@@ -11,7 +15,56 @@ export default function SearchIssue() {
   let headerText = "RECENT ISSUES";
   if (searchInput) {
     headerText = searchResults.length ? "SEARCH RESULTS" : "NO RESULTS FOUND";
-  }
+  };
+
+  const getIconForIssueType = (issueType) => {
+    switch (issueType) {
+      case "Task":
+        return <RiTaskFill style={{
+          color: "rgb(45, 156, 193)",
+          fontSize: "18px",
+        }} />;
+      case "Bug":
+        return <FaBug style={{
+          color: "rgb(217, 3, 3)",
+          fontSize: "18px",
+        }} />;
+      case "Story":
+        return <SiStorybook style={{
+          color: "rgb(3, 133, 3)",
+          fontSize: "18px",
+        }} />;
+      default:
+        return null;
+    }
+  };
+
+  const getPriorityIcon = (priority) => {
+    switch (priority) {
+      case "Urgent":
+        return <TfiArrowUp style={{
+          color: "rgb(170, 2, 2)",
+          fontSize: "14px",
+        }} />;
+      case "High":
+        return <TfiArrowUp  style={{
+          color: "rgb(220, 5, 5)",
+          fontSize: "14px",
+        }} />;
+      case "Medium":
+        return <TfiArrowDown style={{
+          color: "rgb(245, 162, 7)",
+          fontSize: "14px",
+        }} />;
+      case "Low":
+        return <TfiArrowDown style={{
+          color: "rgb(19, 135, 19)",
+          fontSize: "14px",
+        }} />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -30,9 +83,9 @@ export default function SearchIssue() {
           {searchResults.map((ticket) => {
             return (
               <div className="each-ticket" key={ticket.id}>
-                {ticket.shortSummary}
+                {getIconForIssueType(ticket.issueType)}&nbsp;&nbsp;{ticket.shortSummary}&nbsp;&nbsp;{getPriorityIcon(ticket.priority)}
                 <br />
-                {ticket.issueType.toUpperCase()}-{ticket.id}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ticket.issueType.toUpperCase()}-{ticket.id}
               </div>
             );
           })}

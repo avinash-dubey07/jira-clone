@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Main_board.css";
 import Aman from "./Icons/aman.ico"
 import Ashneer from "./Icons/ashneer.ico";
 import Deepinder from "./Icons/deepinder.ico";
 import { FaGithub } from "react-icons/fa";
 import projectService from "../backend/services/project.service";
+import { useTicketContext } from "../App";
 
 export default function MainBoard() {
   const projectDetails = projectService.getProjectDetails();
   const { name } = projectDetails;
+  const { setSearchTerm } = useTicketContext();
+  const [ searchInput, setSearchInput ] = useState("");
+
 
   const routeChange = () => {
     const githubUrl = `https://github.com/avinash-dubey07/jira-clone`;
     window.open(githubUrl, "_blank");
   };
+
+  const handleSearchChange = (e) => {
+    setSearchInput(e.target.value);
+    setSearchTerm(e.target.value); 
+  }
 
   const handleSubmit = (e) => e.preventDefault();
     
@@ -37,6 +46,8 @@ export default function MainBoard() {
             type="search"
             className="search-box"
             placeholder="Search"
+            value={searchInput}
+            onChange={handleSearchChange}
           />
           &nbsp;&nbsp;
           <div style={{marginTop:'9px', marginLeft:'10px', cursor:'no-drop'}}>
