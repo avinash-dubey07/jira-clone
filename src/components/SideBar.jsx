@@ -27,7 +27,7 @@ export default function SideBar() {
     >
       <div style={{display:"flex", padding:'10px', marginTop:'12px', marginLeft:'23px'}}>
       <div>
-        <SiProgress fontSize={"40px"} color="red" />
+        <SiProgress fontSize={"40px"} color="red" /> 
         </div>
         <div>
         <span className="heading-one"> {name} </span> <br />

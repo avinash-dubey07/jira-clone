@@ -6,8 +6,7 @@ import projectService from "../../backend/services/project.service";
 
 function Project() {
   const [showProjectToast, setShowProjectToast] = useState(false);
-  const { project } = useProjectContext();
-  const { setProject } = useProjectContext();
+  const { project, setProject } = useProjectContext();
   const [projectDetails, setProjectDetails] = useState(project);
 
   const onChangeHandler = (e) => {

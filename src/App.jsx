@@ -31,13 +31,13 @@ function App() {
 
     // Update tickets state
     const fetchTickets = async () => {
-      const tickets = await ticketService.getAllTickets();
+      const tickets = ticketService.getAllTickets();
       setAllTickets(tickets);
     };
 
     //Update Project Name state
     const fetchProjectDetails = async () => {
-      const projectDetails = await projectService.getProjectDetails();
+      const projectDetails = projectService.getProjectDetails();
       setProject(projectDetails);
     };
 
