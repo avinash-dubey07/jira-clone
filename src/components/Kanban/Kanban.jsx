@@ -63,6 +63,8 @@ function Kanban() {
   const [selectedTicket, setSelectedTicket] = useState();
   const { allTickets, setAllTickets, searchTerm } = useTicketContext();
 
+  console.log({ allTickets });
+
   // Function to filter tickets based on their status, short summary or description.
   const getFilteredTickets = (status) => {
     return allTickets

@@ -16,7 +16,7 @@ const ProjetContext = createContext();
 function App() {
   const [loading, setLoading] = useState(true);
   const [allTickets, setAllTickets] = useState([]);
-  const [ searchTerm, setSearchTerm ] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [project, setProject] = useState({
     name: "",
     url: "",
@@ -33,12 +33,14 @@ function App() {
     const fetchTickets = async () => {
       const tickets = ticketService.getAllTickets();
       setAllTickets(tickets);
+      console.log("Fetched tickets:", tickets);
     };
 
     //Update Project Name state
     const fetchProjectDetails = async () => {
       const projectDetails = projectService.getProjectDetails();
       setProject(projectDetails);
+      console.log("Fetched project details:", projectDetails);
     };
 
     // Call fetch functions
@@ -71,7 +73,9 @@ function App() {
       </Spinner>
     </div>
   ) : (
-    <TicketContext.Provider value={{ allTickets, setAllTickets, searchTerm, setSearchTerm }}>
+    <TicketContext.Provider
+      value={{ allTickets, setAllTickets, searchTerm, setSearchTerm }}
+    >
       <ProjetContext.Provider value={{ project, setProject }}>
         <Router>
           {/* Left most side bar component of the application */}
