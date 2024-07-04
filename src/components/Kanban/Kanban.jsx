@@ -181,7 +181,7 @@ function Kanban() {
                                           userSelect: "none",
                                           padding: 16,
                                           margin: "0 0 5px 0",
-                                          minHeight: "50px",
+                                          minHeight: "83px",
                                           backgroundColor: snapshot.isDragging
                                             ? "rgb(245, 245, 245)"
                                             : "rgb(255, 255, 255)",
