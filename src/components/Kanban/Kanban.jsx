@@ -98,10 +98,7 @@ function Kanban() {
       },
     };
   };
-  // boards -> {key: value}
-  // value -> Object {key: valye}
-  // name, tickets-> Array of objects
-  //ARRAY ELEMENT -> ARR[INDEX] -> ELEMENT
+
   const [boards, setBoards] = useState(getBoards());
 
   useEffect(() => {
@@ -110,8 +107,7 @@ function Kanban() {
   }, [allTickets, searchTerm]);
 
   const onTicketClickHandler = (boardKey, ticketIndex) => {
-    // Example -> Fix the bug
-    // 1. identify the board using boardKey
+   
     const applicableBoard = boards[boardKey]; // boardKey -> backlog ->**|| Final output = { name: "Backlogs",tickets: [{}]} ||**
     const boardTickets = applicableBoard.tickets; // [{ticket 0 obj}, {ticket 1 obj}, {ticket 2 oj}]
     const clickedTicket = boardTickets[ticketIndex]; // ticketIndex = 1 || Output = {ticket 1 obj}
@@ -293,11 +289,6 @@ function Kanban() {
               ticketModal={setShowTicketModal}
             />
           }
-          //1. open the ticketEdit modal
-          //2. click on  the delete button
-          //3. delete the ticket from the kanban board
-          //4.  close the TicketEdit modal
-          //5.  rerender the UI kanban board.
         />
       )}
       {showDeleteToast && <DeleteToast showToast={showDeleteToast} />}

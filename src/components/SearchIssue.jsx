@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./SearchIssue.css";
 import SearchBar from "./SearchBar/SearchBar";
 import { useTicketContext } from "../App";
